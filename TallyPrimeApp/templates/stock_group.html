@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div style="height: 1190px;width: 50%;">
+    <div style="height:20px;width: 200%;background: #41b6d7;padding:2px;padding-left: none;
+    display: flex;color: black;align-items: center;justify-content:space-between;
+    font-size: 15px;
+    font-weight: bolder;
+    ">
+
+        <p style="margin-bottom: 0px;margin-left: 2px;">Stock Group Creation </p>
+        <span>Abc Pvt Ltd</span>
+        <span style="margin-right: 2px;"><i style="font-size: 18px;font-weight: bolder;" class='bx bx-x'></i></span>
+
+    </div>
+    <div
+        style="width:60% ;height: 20%;background: rgba(255, 255, 255, 0.914);padding: 2%;border: 0.4px solid black;border-top: unset !important;">
+        <div
+            style=" margin-top: 0%;height: auto;width: 100%;color: black;font-size: 12px;font-weight: 600;">
+            <div style="width: 100%; display: flex;align-items: center;">
+                <span style="padding-right: 74px;">
+                    <label for="">Name </label>
+                </span>
+                <span>:                
+                    <input type="text" style="width:300px ;" onkeypress="document.getElementById('(alias)').focus()";>
+                    
+                </span>
+                
+            </div>
+            <div style="width: 100%; display: flex;align-items: center;">
+                <span>
+                <label for="" style="font-style:italic ;">(alias) </label>
+            </span>
+            <span>
+                    <input id="(alias)" type="text" style="width:300px;margin-left: 80px;" >
+                </span>
+            </div>
+            <div>
+                <span>
+                    <label for="" style="margin-top: 60px;" >Under</label>
+                </span>
+                <span>:
+                    <input type="text" style="width:190px ;margin-left: 90px;">
+                </span>
+            </div>
+            <div>
+                <span>
+                    <label for="" >Should quantities of items be added</label>
+                </span>
+                <span>:
+                    <input type="text" style="width:190px ;">
+
+                </span>
+            </div>
+            <div>
+                <span>
+                    <label for="">Set/Alter GST details</label>
+                </span>
+                <span>:
+                    <input type="text" style="width:190px ;margin-left: 90px">
+
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
