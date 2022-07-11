@@ -2,6 +2,33 @@
 {% block body %}
 
 
-<div class=""></div>
+<form action="price_levels" method="post">
+    {% csrf_token %}
+    <div class="page-content" style="width:50%;margin-left: 20%;">
+        <div class="card radius-15">
+            <div class="card-body">
+
+                <div class="card-title">
+                    <center><h2 class="mb-0">Price Levels</h2></center>
+    
+                </div>
+                <div>
+                    {% for i in price %}
+                    {{ forloop.counter }} :<input type="number" class="custom-select-md form-control "  value="{{i.number}}" name="{{i.number}}" style="width: 40%;;margin-left: 30%;margin-top: 40px;" >
+                    {% endfor %}
+                    <input type="number" class="custom-select-md form-control " name="number" style="width: 40%;;margin-left: 30%;margin-top: 40px;" >
+                </div>
+                
+
+
+            </div>
+
+        </div>
+
+    </div>
+</form>
+
+
+
 
 {% endblock %}

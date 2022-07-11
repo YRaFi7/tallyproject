@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% block body %}
+
+
+<style>
+    .close {
+        position: absolute;
+        top: 3px;
+        right: 8px;
+        font-size: 25px;
+        color: rgb(255, 255, 255);
+        transform: rotate(45deg);
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .flexy{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<div style="width: 120%;margin-top: 15%;margin-left: -10%;">
+<div class="row container-fluid p-0 " >
+    <div class="col-sm-3 m-0 p-0"></div>
+    <div class="col-sm-6 m-0 p-0" style=" background-color:rgba(0,0,0,0.2);">
+        <a href="javascript:history.go(-1);" class="close">+</a>
+    <h6  class="bg-info text-light p-2">Stock Item</h6>
+    
+
+<form id="" action="stock_category_secondary" method="post" class="p-5">
+        {% csrf_token %}
+                            <div class="p-3">
+
+                                <div class="row container-fluid  p-2 m-0">
+                                    <div class="col-sm-2 m-0 p-0"> <label for="a">Name</label></div>
+                                    <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" placeholder=""></div>
+                                    <div class="col-sm-7 m-0 p-0"></div>
+                                </div>
+
+                                <div class="row container-fluid  p-2 m-0">
+                                    <div class="col-sm-2 m-0 p-0"> <label for="b">Alias</label></div>
+                                    <div class="col-sm-3 m-0 p-0"> 
+                                    <input type="text" class="form-control" id="b" placeholder=""> <br><br>
+                                    </div>
+                                    <div class="col-sm-7 m-0 p-0"></div>
+                                </div>
+                            
+                                
+
+                                <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
+                        
+                                        <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+
+                                            <div class="row container-fluid  p-2">
+                                                <div class="col-sm-6 m-0 p-0"> <label for="under">Under</div>
+                                                <div class="col-sm-6 m-0 p-0">
+                                                    <select name="Activate" id="under" class="form-control">
+                                                        <option value="primary">Primary</option> 
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row container-fluid  p-2">
+                                                <div class="col-sm-6 m-0 p-0"> <label for="category">Category</div>
+                                                <div class="col-sm-6 m-0 p-0">
+                                                    <select name="Activate" id="category" class="form-control">
+                                                        <option value="no">Not Applicable</option> 
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row container-fluid  p-2">
+                                                <div class="col-sm-6 m-0 p-0"> <label for="units">Units</div>
+                                                <div class="col-sm-6 m-0 p-0">
+                                                    <select name="Activate" id="units" class="form-control">
+                                                        <option value="">Not Applicable</option> 
+                            
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                            <hr>
+                                            <div style="visibility:hidden">
+                                           
+                                                <h5 class="text-center" style="margin-top: 20px;"><u> Additional Details </u></h5>
+                                                
+                                                <div class="row container-fluid  p-2">
+                                                    <div class="col-sm-6 m-0 p-0"> <label for="batches">Maintain in batches</label></div>
+                                                    <div class="col-sm-6 m-0 p-0">
+                                                        <select name="" id="bank" class="form-control">
+                                                            <option value="yse">Yes</option>
+                                                            <option value="no">No</option> 
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row container-fluid  p-2">
+                                                    <div class="col-sm-6 m-0 p-0"> <label for="batches">Track Date of manufacturing</label></div>
+                                                    <div class="col-sm-6 m-0 p-0">
+                                                        <select name="" id="manu_date" class="form-control">
+                                                            <option value="yse">Yes</option>
+                                                            <option value="no">No</option> 
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row container-fluid  p-2">
+                                                    <div class="col-sm-6 m-0 p-0"> <label for="batches">Use Expiry Dates</label></div>
+                                                    <div class="col-sm-6 m-0 p-0">
+                                                        <select name="" id="expiry" class="form-control">
+                                                            <option value="yse">Yes</option>
+                                                            <option value="no">No</option> 
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                    
+                                            
+                                    </div>
+                                    
+                                    
+                                    <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                                            <h5 class="text-center"><u> Statutary details </u></h5>
+
+                                            
+                                            <div class="row container-fluid p-2">
+                                                <div class="col-sm-6 m-0 p-0"><label for=""></label>Rate of duty(eg:5)</div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="number"  class="form-control" id="" placeholder=""></div>
+
+                                            </div>
+                                        
+                                        
+                                    </div>
+                                    
+
+                                    </div>
+                                    
+                                </div>
+
+
+                                    <div class="row container-fluid" style="margin-top: 20px;">
+                                        <h5 class="text-center"><u> Opening Balance </u></h5>
+
+                                        <div class="row container-fluid  p-2 m-0">
+                                            <div class="col-sm-2 m-0 p-0"> <label for="a">Quantity</label></div>
+                                            <div class="col-sm-3 m-0 p-0"><input type="number" class="form-control" id="a" placeholder=""></div>
+                                            <div class="col-sm-7 m-0 p-0"></div>
+                                        </div>
+                        </div>
+
+                        <div class="flexy w-100 py-4"><button class="btn btn-info w-25" style="margin-left: -43%;">Create</button></div>
+
+                    </div>
+                    
+                </div>
+
+</div>
+
+
+{% endblock %}

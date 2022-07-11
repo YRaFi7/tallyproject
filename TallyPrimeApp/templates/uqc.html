@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% block body %}
+
+
+<style>
+  .close {
+      position: absolute;
+      top: 3px;
+      right: 8px;
+      font-size: 25px;
+      color: rgb(255, 255, 255);
+      transform: rotate(45deg);
+      cursor: pointer;
+      text-decoration: none;
+  }
+  .flexy{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+</style>
+
+
+<form id="" action="uqc" method="post" class="p-5">
+  {% csrf_token %}
+
+
+
+  <div style="width: 90%;margin-top: -3%;margin-left: 3%;">
+    <div class="row container-fluid p-0 " >
+      <div class="col-sm-3 m-0 p-0"></div>
+      <div class="col-sm-6 m-0 p-0" style=" background-color:rgba(0,0,0,0.2);">
+          <a href="javascript:history.go(-1);" class="close">+</a>
+      <h6  class="bg-info text-light p-2">UQC Name</h6>
+
+
+
+
+      <input class="custom-select-md form-control" type="text" name="uqc"
+                            style="width: 40%;margin-left: 30%;margin-top: 30px;" id="" 
+                            placeholder="" autocomplete="off"/> 
+
+     
+      
+      
+      
+
+      <div class="flexy w-100 py-4">
+        <button type="submit" class="btn btn-info w-25" style="margin-left:4%;" >Create</button>
+      </div>
+    
+  </div>
+</div>
+</div>
+</form>
+
+
+
+
+
+  
+
+
+ 
+
+
+{% endblock %}

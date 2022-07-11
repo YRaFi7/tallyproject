@@ -39,10 +39,10 @@
     <div class="col-sm-3 m-0 p-0"></div>
     <div class="col-sm-6 m-0 p-0" style=" background-color:rgba(0,0,0,0.2);">
         <a href="javascript:history.go(-1);" class="close">+</a>
-    <h6  class="bg-info text-light p-2">Godown Creation</h6>
+    <h6  class="bg-info text-light p-2">Attendance/Production Type Creation(Secondary)</h6>
     
 
-<form id="" action="godown_alteration" method="post" class="p-5">
+<form id="" action="stock_category_secondary" method="post" class="p-5">
         {% csrf_token %}
    
                     <div class="row container-fluid  p-2 m-0">
@@ -70,6 +70,32 @@
 
                         </div> 
                     </div>
+                    <div class="row container-fluid  p-2 m-0"">
+                        <div class="col-sm-4 m-0 p-0"> <label for="attendance">Attendance Type :</label></div>
+                        <div class="col-sm-8 m-0 p-0">
+                        <select name="attendance" id="" class="custom-select-md form-control " style="width: 50%;margin-left: 20%;" ">
+                            <option value="">Attendance/Leave with Pay</option>
+                            <option value="">Leave without Pay</option>
+                            <option value="">Production</option>
+                            <option value="">User Defined Calendar Type</option>
+                        </select></div>
+                    </div>
+
+                    <div class="row container-fluid  p-2 m-0">
+                      <div class="col-sm-4 m-0 p-0"> <label for="alia">Period Type :</label></div>
+                      <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="period" value="Days"
+                          style="width: 50%;margin-left: 20%;" id="alias" 
+                          placeholder="" autocomplete="off"></div> 
+                  </div>
+
+                  <div class="row container-fluid  p-2 m-0">
+                    <div class="col-sm-4 m-0 p-0"> <label for="alia">Units :</label></div>
+                    <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="units" 
+                        style="width: 50%;margin-left: 20%;" 
+                        placeholder="" autocomplete="off"
+                        id="units" 
+                        onfocus="showUnits()"></div> 
+                </div>
 
                     
 
@@ -88,19 +114,19 @@
 
  <div class="form-popup" id="list-div" >
   
-    <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of Godowns</h6>
+    <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of Stock Category</h6>
 <hr >
 <div>
     <table >
     <tr >
         <td>
-             <a href="godown_secondary"> <button
+              <button
                 type="submit"
                 style="color: black;margin-left: 310%; width: 20%"
                 class="custom-select-md form-control"
               >
                 create
-              </button></a>
+              </button>
         </td>
     </tr>
 
@@ -121,6 +147,43 @@
 
  </div>
 
+ <!-- list of units -->
+
+ <div class="form-popup" id="list-div" >
+  
+  <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of UQC</h6>
+<hr >
+<div>
+  <table >
+  <tr >
+      <td>
+         <a href="uqc"> <button
+              type="submit"
+              style="color: black;margin-left: 310%; width: 20%"
+              class="custom-select-md form-control"
+            >
+              create
+            </button></a>
+      </td>
+  </tr>
+
+  <tr>
+    <td>    
+
+      {% for l in unit %}
+    <div onclick="hideList('{{l.uqc}}')" style="color:black;" >{{l.uqc}}</div>
+    {% endfor %}
+    </td>
+  </tr>  
+  
+  </table>
+</div>
+
+
+
+
+</div>
+
 
 <script>
   
@@ -132,6 +195,9 @@
     document.getElementById("primary-text").value=valueDIv;
     document.getElementById("list-div").style.visibility = "hidden";
   }
+  function showUnits(){
+    document.getElementById()
+  }
   // function color(value){
   //   document.body.style.backgroundColor="rgba(255, 0, 0, 0.4)";
 
@@ -139,8 +205,5 @@
   
 </script>
  
-
-
-
 
 {% endblock %}

@@ -1,88 +1,221 @@
 {% extends 'base.html' %}
 {% block body %}
+<style>
+.close {
+        position: absolute;
+        top: 3px;
+        right: 8px;
+        font-size: 25px;
+        color: rgb(255, 255, 255);
+        transform: rotate(45deg);
+        cursor: pointer;
+        text-decoration: none;
+    }
 
-<div style="height:100%;width: 50%;">
-    <div style="height:20px;width: 200%;background: #41b6d7;padding:2px;padding-left: none;
-    display: flex;color: black;align-items: center;justify-content:space-between;
-    font-size: 15px;
-    font-weight: bolder;
-    ">
+</style>
 
-        <p style="margin-bottom: 0px;margin-left: 2px;">Employee Creation </p>
-        <span>Abc Pvt Ltd</span>
-        <span style="margin-right: 2px;"><i style="font-size: 18px;font-weight: bolder;" class='bx bx-x'></i></span>
 
-    </div>
-    <div
-        style="width:88% ;height: 490px;background: rgba(255, 255, 255, 0.914);padding: 2%;border: 0.4px solid black;border-top: unset !important;">
-        <div
-            style=" margin-top: 2%;height: auto;width: 100%;color: black;font-size: 12px;font-weight: 600;">
-            <div style="width: 100%; display: flex;align-items: center;">
-                <span style="padding-right: 74px;">
-                    <label for="">Name </label>
-                </span>
-                <span>:                
-                    <input type="text" style="width:60px ;">
-                </span>
-            </div>
-            <div style="width: 100%; display: flex;align-items: center;">
-                <span>
-                <label for="" style="font-style:italic ;">(alias) </label>
-            </span>
-            <span> :
-                    <input type="text">
-                </span>
-            </div>
-            <div>
-                <span>
-                    <label for="">Under</label>
-                </span>
-                <span>:
-                    <input type="text">
-                </span>
-            </div>
-            <div>
-                <span>
-                    <label for="">Date of joining</label>
-                </span>
-                <span>:
-                    <input type="date">
+    <div class="row container-fluid p-0 " style="width: 150%;margin-left: 12%;">
+        <div class="col-sm-6 m-0 p-0" style=" background-color:rgba(0,0,0,0.2);">
+            <a href="javascript:history.go(-1);" class="close">+</a>
+        <h6  class="bg-info text-light p-2">Employee Creation</h6>
 
-                </span>
-            </div>
-            <div>
-                <span>
-                    <label for="">Define salary details</label>
-                </span>
-                <span>:
-                    <input type="text">
 
-                </span>
-            </div>
-            <div class="row">
-                <div class="column" style="background-color:#aaa;">
-                  <h6 style="color: black;"><strong> <u> General Information </u> </strong>  </h6>
-                  <table>
-                    <thead>
-                        <tr>
-                            <th>Employee Number</th>
-                        </tr>
+        <form id="" action="employee_creation" method="post" class="p-5">
+            {% csrf_token %}
+                            
+                
+                            <div class="p-3" >
 
-                    </thead>
+                                <div class="row container-fluid  p-2 m-0">
+                                    <div class="col-sm-2 m-0 p-0"> <label for="a">Name</label></div>
+                                    <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" placeholder=""></div>
+                                    <div class="col-sm-7 m-0 p-0"></div>
+                                </div>
 
-                  </table>
-                 
+                                <div class="row container-fluid  p-2 m-0">
+                                    <div class="col-sm-2 m-0 p-0"> <label for="b">Alias</label></div>
+                                    <div class="col-sm-3 m-0 p-0"> 
+                                    <input type="text" class="form-control" id="b" placeholder=""></div>
+                                    <div class="col-sm-7 m-0 p-0"></div>
+                                </div>
+                            
+                                <div class="row container-fluid  p-2 m-0">
+                                    <div class="col-sm-2 m-0 p-0"> <label for="b">Under</label></div>
+                                    <div class="col-sm-3 m-0 p-0"> 
+                                        <select name="usedate" id="g" class="form-control">
+                                            <option value="primary">Primary</option> 
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row container-fluid  p-2 m-0">
+                                    <div class="col-sm-2 m-0 p-0"> <label for="date">Date of joining</label></div>
+                                    <div class="col-sm-3 m-0 p-0"><input type="date" class="form-control" id="date" placeholder=""></div>
+                                    <div class="col-sm-7 m-0 p-0"></div>
+                                </div>
+                                <div class="row container-fluid  p-2 m-0">
+                                    <div class="col-sm-2 m-0 p-0"> <label for="salary">Define salary details</label></div>
+                                    <div class="col-sm-3 m-0 p-0">
+                                        <select name="Activate" id="salary" class="form-control">
+                                            <option value="No">No</option> 
+                                            <option value="Yes">Yes</option>
+                                        </select> <br><br>
+                                        <div class="col-sm-7 m-0 p-0"></div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
+                        
+                                        <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                                            <h5 class="text-center"><u> General Information </u></h5>
+                    
+                                            <div class="row container-fluid  p-2">
+                                                <div class="col-sm-6 m-0 p-0"> <label for="empno">Employee Number</label></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="empno" placeholder=""></div>
+                                            </div>
+                    
+                                            <div class="row container-fluid  p-2">
+                                                <div class="col-sm-6 m-0 p-0"> <label for="desig">Designation</label></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="desig" placeholder=""></div>
+                                            </div>
+                    
+                                            <div class="row container-fluid  p-2">
+                                                <div class="col-sm-6 m-0 p-0"> <label for="fn">Function</label></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="fn" placeholder=""></div>
+                                            </div>
+                    
+                                            <div class="row container-fluid  p-2">
+                                                <div class="col-sm-6 m-0 p-0"> <label for="loc">Location</label></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="loc" placeholder=""></div>
+                                            </div>
+                    
+                                            <div class="row container-fluid  p-2">
+                                                <div class="col-sm-6 m-0 p-0"> <label for="gender">Gender</div>
+                                                <div class="col-sm-6 m-0 p-0">
+                                                    <select name="Activate" id="gender" class="form-control">
+                                                        <option value="male">Male</option> 
+                                                        <option value="female">Female</option>
+                                                        <option value="trans">Transgender</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                    
+                                            <div class="row container-fluid  p-2">
+                                                <div class="col-sm-6 m-0 p-0"> <label for="dob">Date of birth</label></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="dob" placeholder=""></div>
+                                            </div>
+                    
+                                            <div class="row container-fluid  p-2">
+                                                <div class="col-sm-6 m-0 p-0"> <label for="blood">Blood Group</div>
+                                                <div class="col-sm-6 m-0 p-0">
+                                                    <select name="Activate" id="blood" class="form-control">
+                                                        <option value="A+ve">A+ve</option> 
+                                                        <option value="B+ve">B+ve</option> 
+                                                        <option value="O+ve">O+ve</option> 
+                                                        <option value="AB+ve">AB+ve</option>
+                                                        <option value="A-ve">A-ve</option>
+                                                        <option value="B-ve">B-ve</option>   
+                                                        <option value="AB-ve">AB-ve</option> 
+                                                        <option value="O-ve">O-ve</option> 
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+                    
+                                            <div class="row container-fluid  p-2">
+                                                <div class="col-sm-6 m-0 p-0"> <label for="prnts">Father's /Mother's Name</label></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="prnts" placeholder=""></div>
+                                            </div>
+                    
+                                            <div class="row container-fluid  p-2">
+                                                <div class="col-sm-6 m-0 p-0"> <label for="spouse">Spouse's Name</label></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="spouse" placeholder=""></div>
+                                            </div>
+                    
+                                            <div class="row container-fluid  p-2">
+                                                <div class="col-sm-6 m-0 p-0"> <label for="adrs">Address</label></div>
+                                                <div class="col-sm-6 m-0 p-0"><textarea type="text" rows="4" class="form-control" id="adrs" placeholder=""></textarea></div>
+                                            </div>
+                    
+                                            <div class="row container-fluid  p-2">
+                                                <div class="col-sm-6 m-0 p-0"> <label for="phno">Phone Number</label></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="phno" placeholder=""></div>
+                                            </div>
+                                            <div class="row container-fluid  p-2">
+                                                <div class="col-sm-6 m-0 p-0"> <label for="email">Email</label></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="Email" class="form-control" id="email" placeholder=""></div>
+                                            </div>
+                
+                    
+                    
+                                            
+                                        </div>
+                                    
+                                    
+                                    <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                                            <h5 class="text-center"><u> Statutary details </u></h5>
+
+                                            <div class="row container-fluid  p-2">
+                                                <div class="col-sm-6 m-0 p-0"> <label for="bank">Provide bank details</label></div>
+                                                <div class="col-sm-6 m-0 p-0">
+                                                    <select name="Activate" id="bank" class="form-control">
+                                                        <option value="No">No</option> 
+                                                        <option value="Yes">Yes</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        <hr>
+    
+                                        <div class="row container-fluid  p-2">
+                                            <div class="col-sm-6 m-0 p-0"> <label for="intax">Income Tax Number</label></div>
+                                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="intax" placeholder=""></div>
+                                        </div>
+                                        <div class="row container-fluid  p-2">
+                                            <div class="col-sm-6 m-0 p-0"> <label for="aadhar">Aadhar Number</label></div>
+                                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="aadhar" placeholder=""></div>
+                                        </div>
+                
+                                        <div class="row container-fluid  p-2">
+                                            <div class="col-sm-6 m-0 p-0"> <label for="uan">Universal Account Number(UAN)</label></div>
+                                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="uan" placeholder=""></div>
+                                        </div>
+                
+                                        <div class="row container-fluid  p-2">
+                                            <div class="col-sm-6 m-0 p-0"> <label for="pfn">PF Account Number(PFN)</label></div>
+                                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="pfn" placeholder=""></div>
+                                        </div>
+                
+                                        <div class="row container-fluid  p-2">
+                                            <div class="col-sm-6 m-0 p-0"> <label for="prn">PR Account Number(PRAN)</label></div>
+                                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="prn" placeholder=""></div>
+                                        </div>
+                
+                                        <div class="row container-fluid  p-2">
+                                            <div class="col-sm-6 m-0 p-0"> <label for="esi">ESI Number(ESIN)</label></div>
+                                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="esi" placeholder=""></div>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                        </div>
+                        
+                        <div class="flexy w-100 py-4"><button class="btn btn-info w-25" style="margin-left:5% ;">Create</button></div>
+                    
+                    </form>
+                    
+                    </div>
+                    
+                    
+                
+            
                 </div>
-                <div class="column" style="background-color:#bbb;">
-                  <h2>Column 2</h2>
-                  <p>Some text..</p>
-                </div>
 
 
 
-        </div>
-    </div>
-</div>
 
+                
 
 {% endblock %}

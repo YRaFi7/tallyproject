@@ -1,49 +1,146 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<div style="height:100%;width: 50%;">
-    <div style="height:20px;width: 200%;background: #41b6d7;padding:2px;padding-left: none;
-    display: flex;color: black;align-items: center;justify-content:space-between;
-    font-size: 15px;
-    font-weight: bolder;">
+<style>
+    .close {
+        position: absolute;
+        top: 3px;
+        right: 8px;
+        font-size: 25px;
+        color: rgb(255, 255, 255);
+        transform: rotate(45deg);
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .flexy{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-        <p style="margin-bottom: 0px;margin-left: 2px;">Stock Category Creation </p>
-        <span>Abc Pvt Ltd</span>
-        <span style="margin-right: 2px;"><i style="font-size: 18px;font-weight: bolder;" class='bx bx-x'></i></span>
+    .form-popup {
+        visibility: hidden;       
+        position: fixed;
+        top: 230px;
+        right: 15px;
+        background-color: rgb(216, 232, 238); 
+        border: 1px solid #f1f1f1;
+        z-index: 9;
+        width: 300px;
+        height: 200px;
+      
+      }
+    
 
-    </div>
-    <div
-        style="width:60% ;height: 20%;background: rgba(255, 255, 255, 0.914);padding: 2%;border: 0.4px solid black;border-top: unset !important;">
-        <div
-            style=" margin-top: 2%;height: auto;width: 100%;color: black;font-size: 12px;font-weight: 600;">
-            <div style="width: 100%; display: flex;align-items: center;">
-                <span style="padding-right: 74px;">
-                    <label for="">Name </label>
-                </span>
-                <span>:                
-                    <input type="text" style="width:300px ;">
-                </span>
-            </div>
-            <div style="width: 100%; display: flex;align-items: center;">
-                <span>
-                <label for="" style="font-style:italic ;">(alias) </label>
-            </span>
-            <span> :
-                    <input type="text">
-                </span>
-            </div>
-            <div style="margin-top: 15%;">
-                <span>
-                    <label for="">Under</label>
-                </span>
-                <span>:
-                    <input type="text">
-                </span>
-            </div>
-            
-        </div>
-    </div>
+
+</style>
+<div style="width: 110%;margin-left: -4%;margin-top: 15%;">
+<div class="row container-fluid p-0 " >
+    <div class="col-sm-3 m-0 p-0"></div>
+    <div class="col-sm-6 m-0 p-0" style=" background-color:rgba(0,0,0,0.2);">
+        <a href="javascript:history.go(-1);" class="close">+</a>
+    <h6  class="bg-info text-light p-2">Stock Category Creation</h6>
+    
+
+<form id="" action="stock_category_creation" method="post" class="p-5">
+        {% csrf_token %}
+   
+                    <div class="row container-fluid  p-2 m-0">
+                        <div class="col-sm-4 m-0 p-0"> <label for="gname">Name :</label></div>
+                        <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="name"
+                            style="width: 50%;margin-left: 20%;" id="alias" 
+                            placeholder="" autocomplete="off"/></div> 
+                    </div>
+
+                    <div class="row container-fluid  p-2 m-0">
+                        <div class="col-sm-4 m-0 p-0"> <label for="alia">(Alias) :</label></div>
+                        <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="alias"
+                            style="width: 50%;margin-left: 20%;" id="alias" 
+                            placeholder="" autocomplete="off"></div> 
+                    </div>
+
+                    <div class="row container-fluid  p-2 m-0">
+                        <div class="col-sm-4 m-0 p-0"> <label for="under">Under :</label></div>
+                        <div class="col-sm-8 m-0 p-0">
+                             <input class="custom-select-md form-control" type="text" name="under_name"
+                                   style="width: 50%;margin-left: 20%;" id="primary-text" onfocus="showList()"
+                                   placeholder="Primary" autocomplete="off">
+                                   
+                                  
+
+                        </div> 
+                    </div>
+
+                    
+
+                    <div><input type="submit" style="margin-left: 47%;margin-top: 20px;width: 25%;" value="create" class="btn btn-info"></div>
+
+                    <!-- <div class="flexy w-100 py-4"><button id="cbtn" type="button" class="btn btn-info w-50">Create</button></div> -->
+    
+</form>
+
 </div>
+</div>
+</div>
+
+
+<!-- list Creation -->
+
+ <div class="form-popup" id="list-div" >
+  
+    <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of Stock Category</h6>
+<hr >
+<div>
+    <table >
+    <tr >
+        <td>
+            <a href="stock_group_secondary"><button
+                type="submit"
+                style="color: black;margin-left: 310%; width: 20%"
+                class="custom-select-md form-control"
+              >
+                create
+              </button></a>
+        </td>
+    </tr>
+
+    <tr>
+      <td>    
+
+        {% for l in und %}
+        <div onclick="hideList('{{l.name}}')" style="color: black;" >{{l.name}}</div>
+        {% endfor %}
+      </td>
+    </tr>  
+    
+    </table>
+</div>
+
+
+
+
+ </div>
+
+
+<script>
+  
+
+  function showList() {
+    document.getElementById("list-div").style.visibility = "visible";
+  }
+  function hideList(valueDIv) {
+    document.getElementById("primary-text").value=valueDIv;
+    document.getElementById("list-div").style.visibility = "hidden";
+  }
+  // function color(value){
+  //   document.body.style.backgroundColor="rgba(255, 0, 0, 0.4)";
+
+  // }
+  
+</script>
+ 
+
+
 
 
 {% endblock %}

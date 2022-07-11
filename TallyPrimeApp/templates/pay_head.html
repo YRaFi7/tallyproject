@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block body %}
+
+
+    <div style="width: 90%;margin-top: 10%;">
+        <div class="row container-fluid p-0 " >
+            <div class="col-sm-3 m-0 p-0"></div>
+            <div class="col-sm-6 m-0 p-0" style=" background-color:rgba(0,0,0,0.2);">
+                <a href="javascript:history.go(-1);" class="close">+</a>
+            <h6  class="bg-info text-light p-2">Pay Head Creation</h6>
+            
+                <div class="col-md-12">
+                    <label for="" style="margin-top: 20px;">Name</label>
+                    <input class="custom-select-md form-control " style="width: 40%;"  type="text">
+                </div>
+                <div class="col-md-12">
+                    <label for="" style="margin-top:20px ;">(alias)</label>
+                    <input class="custom-select-md form-control " style="width: 40%;" type="text"><br><br>
+                </div>
+
+                <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
+                        
+                        <h5 class="text-center" style="margin-left: 30% ;margin-top: 20px ;"><u> Pay Heads Information </u></h5>
+
+                        
+                                <div class="row container-fluid  p-2 ">
+                                    <div class="col-sm-6 m-0 p-0"> <label for="gender" style="margin-left: 30px;">Pay heads type</div>
+                                    <div class="col-sm-6 m-0 p-0" style="margin-left: 30px;">
+                                        <select name="Activate" id="" class="form-control">
+                                            <option value="Not Applicable">Not Applicable</option>
+                                    <option value="Deductions From Employees">Deductions From Employees</option>
+                                    <option value="Earnings for Employees">Earnings for Employees</option>
+                                    <option value="Employees Statutory Deductions">Employees Statutory Deductions</option>
+                                    <option value="Employees Statutory Contibutions">Employees Statutory Contibutions</option>
+                                    <option value="Gratuity">Gratuity</option>
+                                    <option value="Loans and Advances">Loans and Advances</option>
+                                    
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="row container-fluid  p-2">
+                                    <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Income type</label></div>
+                                    <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="loc" placeholder=""></div>
+                                </div>
+
+                                <div class="row container-fluid  p-2">
+                                    <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Under</label></div>
+                                    <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="loc" placeholder=""></div>
+                                </div>
+                                
+                                <div class="row container-fluid  p-2">
+                                    <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Affect net salary</label></div>
+                                    <div class="col-sm-6 m-0 p-0"><select name="Activate" id="" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                    </select>
+
+                                    </div>
+                                </div>
+                                <div class="row container-fluid  p-2">
+                                    <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Name to be displayed in payslip</label></div>
+                                    <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="loc" placeholder=""></div>
+                                </div>
+                                <div class="row container-fluid  p-2">
+                                    <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Currency of ledger</label></div>
+                                    <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="loc" placeholder=""></div>
+                                </div>
+                                <div class="row container-fluid  p-2">
+                                    <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Calculation type</label></div>
+                                    <div class="col-sm-6 m-0 p-0"><select name="Activate" id="" class="form-control">
+                                    <option value="Not Applicable">Not Applicable</option>
+                                    <option value="On Attendance">On Attendance</option>
+                                    </select>
+
+                                    </div>
+                                </div>
+                                <div class="flexy w-100 py-4"><button class="btn btn-info w-25" style="margin-left: 47%;">Create</button></div>
+                                
+
+
+                        
+                </div>
+                
+            </div>
+            
+
+                </div>
+
+        </div>
+
+    
+
+    
+
+
+
+
+
+{% endblock %}
