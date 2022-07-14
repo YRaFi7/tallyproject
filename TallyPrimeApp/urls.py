@@ -35,10 +35,16 @@ urlpatterns=[
     path('pan_cin',views.pan_cin,name='pan_cin'),
     path('pay_head',views.pay_head,name='pay_head'),
     
-    path('stock',views.stock,name='stock'),
+    path('salary_details',views.salary_details,name='salary_details'),
+    
+    path('payroll',views.payroll,name='payroll'),
+    
+    path('bank',views.bank,name='bank')
     
     
-    path('payroll',views.payroll,name='payroll')
+    
+    
+ 
    
     
     

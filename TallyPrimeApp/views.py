@@ -204,15 +204,20 @@ def pan_cin(request):
 def pay_head(request):
     return render(request,'pay_head.html')
 
-def stock(request):
-    return render(request,'stock.html')
+def bank(request):
+    return render(request,'bank_details.html')
 
 
 def payroll(request):
-    return render(request,'cost.html')
+    return render(request,'payroll_voucher_type.html')
 
 def attendance(request):
     return render(request,'attendance.html')
 
 def attendance_seconday(request):
     return render(request,'attendance(secondary)).html')
+
+def salary_details(request):
+    return render(request,'salary_details.html')
+
+

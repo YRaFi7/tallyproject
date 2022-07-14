@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+    .close {
+        position: absolute;
+        top: 3px;
+        right: 8px;
+        font-size: 25px;
+        color: rgb(255, 255, 255);
+        transform: rotate(45deg);
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .flexy{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form-popup {
+        visibility: hidden;       
+        position: fixed;
+        top: 230px;
+        right: 15px;
+        background-color: rgb(216, 232, 238); 
+        border: 1px solid #f1f1f1;
+        z-index: 9;
+        width: 300px;
+        height: 200px;
+      
+      }
+    
+
+
+</style>
+<div style="width: 110%;margin-left: -4%;margin-top: 15%;">
+<div class="row container-fluid p-0 " >
+    <div class="col-sm-3 m-0 p-0"></div>
+    <div class="col-sm-6 m-0 p-0" style=" background-color:rgba(0,0,0,0.2);">
+        <a href="javascript:history.go(-1);" class="close">+</a>
+    <h6  class="bg-info text-light p-2">Bank Details Creation</h6>
+    
+
+<form id="" action="stock_category_creation" method="post" class="p-5">
+        {% csrf_token %}
+
+
+                <h6  style="margin-top: -40px;">  <center> Bank details for:  </center></h6><br><br>
+
+                <h5> <center> <u> For Statuatory And Payroll Reports </u> </center></h5>
+
+                <div style="margin-top: 5%;">
+                    <div class="row container-fluid  p-2 m-0">
+                        <div class="col-sm-4 m-0 p-0"> <label for="gname">Acc no :</label></div>
+                        <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="acc"
+                            style="width: 50%;margin-left: 20%;" id="alias" 
+                            placeholder="" autocomplete="off"/></div> 
+                    </div>
+
+                    <div class="row container-fluid  p-2 m-0">
+                        <div class="col-sm-4 m-0 p-0"> <label for="alia">IFSC Code :</label></div>
+                        <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="ifsc"
+                            style="width: 50%;margin-left: 20%;" id="alias" 
+                            placeholder="" autocomplete="off"></div> 
+                    </div>
+
+                    <div class="row container-fluid  p-2 m-0">
+                        <div class="col-sm-4 m-0 p-0"> <label for="under">Bank Name :</label></div>
+                        <div class="col-sm-8 m-0 p-0">
+                             <input class="custom-select-md form-control" type="text" name="bank_name"
+                                   style="width: 50%;margin-left: 20%;" id="primary-text" 
+                                   autocomplete="off">       
+                        </div> 
+                    </div>
+                    <div class="row container-fluid  p-2 m-0">
+                        <div class="col-sm-4 m-0 p-0"> <label for="gname">Branch :</label></div>
+                        <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="branch"
+                            style="width: 50%;margin-left: 20%;" id="alias" 
+                            placeholder="" autocomplete="off"/></div> 
+                    </div>
+
+
+                </div>
+
+                    
+
+                    <div><input type="submit" style="margin-left: 47%;margin-top: 20px;width: 25%;" value="create" class="btn btn-info"></div>
+
+                   
+</form>
+
+</div>
+</div>
+</div>
+
+
+{% endblock %}

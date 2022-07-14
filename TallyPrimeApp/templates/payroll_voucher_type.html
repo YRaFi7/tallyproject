@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+    .close {
+        position: absolute;
+        top: 3px;
+        right: 8px;
+        font-size: 25px;
+        color: rgb(255, 255, 255);
+        transform: rotate(45deg);
+        cursor: pointer;
+        text-decoration: none;
+    }
+    
+
+    
+    
+
+
+</style>
+<div style="width: 180%;margin-top: 15%;margin-left: -40%;">
+<div class="row container-fluid p-0 " >
+    <div class="col-sm-3 m-0 p-0"></div>
+    <div class="col-sm-6 m-0 p-0" style=" background-color:rgba(0,0,0,0.2);">
+        <a href="javascript:history.go(-1);" class="close">+</a>
+    <h6  class="bg-info text-light p-2">Payroll Voucher Type Creation</h6>
+    
+
+<form id="" action="stock_group" method="post" class="p-5">
+        {% csrf_token %}
+   
+                    <div class="row container-fluid  p-2 m-0">
+                        <div class="col-sm-4 m-0 p-0"> <label for="gname">Name :</label></div>
+                        <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="name"
+                            style="width: 40%;margin-left: -20%;" id="alias" 
+                            placeholder="" autocomplete="off"/></div> 
+                    </div>
+
+                    <div class="row container-fluid  p-2 m-0">
+                        <div class="col-sm-4 m-0 p-0"> <label for="alia">(Alias) :</label></div>
+                        <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="alias"
+                            style="width: 40%;margin-left: -20%;" id="alias" 
+                            placeholder="" autocomplete="off"></div> 
+                    </div>
+
+                    <div class="row container-fluid p-2 m-0"style=" border: 1px solid rgba(128, 128, 128, 0.6);"> 
+                        <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                            <h5 class="text-center"><u> General Information </u></h5>
+
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-4 m-0 p-0"> <label for="voucher">Select Type of Voucher </label></div>
+                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" name="voucher_type" id="voucher" class="form-control">
+                                    <option value="">--select--</option> 
+                                    <option value="Attendance">Attendance</option> 
+                                    <option value="Payment">Payment</option>
+                                    <option value="Payroll">Payroll</option>
+                                </select></div> 
+                            </div>
+
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-4 m-0 p-0"> <label for="Abbreviation">Abbreviation </label></div>
+                                <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="abbreviation"
+                                    style="width: 50%;margin-left: 20%;" id="abbr" 
+                                    placeholder="" autocomplete="off"></div> 
+                            </div>
+
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-4 m-0 p-0"> <label for="v_type">Activate This Voucher Type </label></div>
+                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="abbr"  name="voucher_type" id="" class="custom-select-md form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select></div> 
+                            </div>
+
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-4 m-0 p-0"> <label for="voucher">Method of Voucher numbering </label></div>
+                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" name="voucher_numbering" id="voucher" class="form-control">
+                                    <option value="">--select--</option> 
+                                    <option value="Automatic">Automatic</option> 
+                                    <option value="Manual_override">Automatic(Manual Override)</option>
+                                    <option value="Manual">Manual</option>
+                                    <option value="Multi-user">Multi-user Auto</option>
+                                    <option value="None">None</option>
+                                </select></div> 
+                            </div>
+
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-4 m-0 p-0"> <label for="v_type">Use effective dates for vouchers </label></div>
+                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="effective"  name="use_effective_dates" id="" class="custom-select-md form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select></div> 
+                            </div>
+
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-4 m-0 p-0"> <label for="v_type">Allow zero valued transactions </label></div>
+                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="transactins"  name="zero_transactions" id="" class="custom-select-md form-control">
+                                    
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select></div> 
+                            </div>
+
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-4 m-0 p-0"> <label for="">Make this voucher type as optional by default </label></div>
+                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="optional"  name="optional_voucher" id="" class="custom-select-md form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select></div> 
+                            </div>
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-4 m-0 p-0"> <label for="">Allow Narration in voucher </label></div>
+                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="narrate"  name="narration" id="" class="custom-select-md form-control">
+                                    
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select></div> 
+                            </div>
+
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-4 m-0 p-0"> <label for="">Provide narration for each ledger in avoucher </label></div>
+                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="ledger_narrations"  name="ledger_narration" id="" class="custom-select-md form-control"> 
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select></div> 
+                            </div>
+
+
+
+                    
+                        </div>
+
+                        <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                            <h5 class="text-center"><u> Printing </u></h5>
+
+                            <div class="row container-fluid  p-2">
+                                <div class="col-sm-6 m-0 p-0"> <label for="bank">Print voucher after saving</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select style="width: 50%;margin-left: 20%;" name="print" id="voucher" class="form-control">
+                                        <option value="No">No</option> 
+                                        <option value="Yes">Yes</option>
+                                    </select>
+
+                                    
+                                </div>
+                            </div>
+                            <hr>
+
+                            <h5 class="text-center"><u> Class </u></h5>
+
+                            <div class="row container-fluid  p-2">
+                                <div class="col-sm-6 m-0 p-0"> <label for="bank">Name of Class</label></div>
+                                <div class="col-sm-6 m-0 p-0"><input class="custom-select-md form-control" type="text" name="abbreviation"
+                                    style="width: 50%;margin-left: 20%;" id="abbr" 
+                                    placeholder="" autocomplete="off">
+                                </div>
+                            </div>
+                                    
+                        </div>
+
+
+                        
+                    </div>
+                    
+            
+
+                    <div><input type="submit" style="margin-left: 38%;margin-top: 20px;width: 25%;" value="create" class="btn btn-info"></div>
+
+                   
+    
+</form>
+
+</div>
+</div>
+</div>
+
+
+ 
+
+
+
+
+{% endblock %}
