@@ -8,12 +8,14 @@ urlpatterns=[
     path('attendance',views.attendance,name='attendance'),
     path('attendance_seconday',views.attendance_seconday,name='attendance_seconday'),
     
-    
     path('stock_group',views.stock_group,name='stock_group'),
     path('stock_group_secondary',views.stock_group_secondary,name='stock_group_secondary'),
     
     path('stock_category_creation',views.stock_category_creation,name='stock_category_creation'),
     path('stock_category_secondary',views.stock_category_secondary,name='stock_category_secondary'),
+    
+    path('stock_items',views.stock_items,name='stock_items'),
+    path('stock_item_allocations',views.stock_item_allocations,name='stock_item_allocations'),
     
     path('unit_creation',views.unit_creation,name='unit_creation'),
     path('uqc',views.uqc,name='uqc'),
@@ -22,7 +24,6 @@ urlpatterns=[
     
 
     path('price_levels',views.price_levels,name='price_levels'),
-    path('stock_items',views.stock_items,name='stock_items'),
     
     path('godown_alteration',views.godown_alteration,name='godown_alteration'),
     path('godown_secondary',views.godown_secondary,name='godown_secondary'),

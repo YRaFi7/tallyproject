@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+    {% block body %}
+        {% load static %}
+        <style>
+            .flexy{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+    
+        .close {
+            position: absolute;
+            top: 3px;
+            right: 8px;
+            font-size: 25px;
+            color: rgb(255, 255, 255);
+            transform: rotate(45deg);
+            cursor: pointer;
+            text-decoration: none;
+            
+        }
+
+        input{
+            background-color:white;
+        }
+    </style>
+        
+
+            <div style="width: 190%;margin-left: 2%;margin-top: 15%;">
+                <div class="row container-fluid p-0 " >
+
+                    <div class="col-sm-6 m-0 p-0" style=" background-color:rgba(0,0,0,0.2);">
+                        <a href="javascript:history.go(-1);" class="close">+</a>
+                    <h6  class="bg-info text-light p-2">Stock Item Allocation</h6>
+
+
+
+                    <div class="row container-fluid  p-2 m-0">
+                        <div class="col-sm-4 m-0 p-0"> <label for="gname">Allocations of :</label></div>
+                        <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="allocate"
+                            style="width: 30%;margin-left: -20%;" id="allocate" 
+                            placeholder="" autocomplete="off"/></div> 
+                    </div>
+
+                    <div class="row container-fluid  p-2 m-0">
+                        <div class="col-sm-4 m-0 p-0"> <label for="alia">for :</label></div>
+                        <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="for"
+                            style="width: 30%;margin-left: -20%;" id="for" 
+                            placeholder="" autocomplete="off"></div> 
+                    </div>
+  
+                                <Table class="w-100 table text-center" border="1">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 50px;" rowspan="2">Godown</th>
+                                            <th  width="400px" rowspan="2">Pay Head</th>
+                                            <th rowspan="2">Rate</th>
+                                            <th width="30px" rowspan="2">Quantity</th>
+                                            <th rowspan="2">Rate</th>
+                                            <th rowspan="2">Per</th>
+                                            <th rowspan="2">Amount</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>                   
+                                        <tr>
+                                       
+                                            <td><input type="text" name="" 
+                                                onfocus="showList()"
+                                                placeholder="Primary" autocomplete="off"> </td>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+
+                                    
+                                    
+                                </Table>
+                            
+                    </div>
+                </div>
+            </div>
+
+    <script>
+
+
+
+    </script>
+            
+       
+      
+        
+       
+    
+{% endblock %}

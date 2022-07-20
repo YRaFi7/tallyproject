@@ -11,11 +11,23 @@
         cursor: pointer;
         text-decoration: none;
     }
+    .form-popup {
+        visibility: hidden;       
+        position: fixed;
+        top: 230px;
+        right: 15px;
+        background-color: rgb(216, 232, 238); 
+        border: 1px solid #f1f1f1;
+        z-index: 9;
+        width: 300px;
+        height: 200px;
+      
+      }
 
 </style>
 
 
-    <div class="row container-fluid p-0 " style="width: 150%;margin-left: 12%;">
+    <div class="row container-fluid p-0 " style="width: 190%;margin-left:2%;margin-top: 15%;">
         <div class="col-sm-6 m-0 p-0" style=" background-color:rgba(0,0,0,0.2);">
             <a href="javascript:history.go(-1);" class="close">+</a>
         <h6  class="bg-info text-light p-2">Employee Creation</h6>
@@ -29,35 +41,39 @@
 
                                 <div class="row container-fluid  p-2 m-0">
                                     <div class="col-sm-2 m-0 p-0"> <label for="a">Name</label></div>
-                                    <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" placeholder=""></div>
+                                    <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" placeholder="" name="name"
+                                        onblur="passvalues()"></div>
                                     <div class="col-sm-7 m-0 p-0"></div>
                                 </div>
 
                                 <div class="row container-fluid  p-2 m-0">
                                     <div class="col-sm-2 m-0 p-0"> <label for="b">Alias</label></div>
                                     <div class="col-sm-3 m-0 p-0"> 
-                                    <input type="text" class="form-control" id="b" placeholder=""></div>
+                                    <input type="text" class="form-control" id="b" placeholder="" name="alias"></div>
                                     <div class="col-sm-7 m-0 p-0"></div>
                                 </div>
                             
                                 <div class="row container-fluid  p-2 m-0">
-                                    <div class="col-sm-2 m-0 p-0"> <label for="b">Under</label></div>
-                                    <div class="col-sm-3 m-0 p-0"> 
-                                        <select name="usedate" id="g" class="form-control">
-                                            <option value="primary">Primary</option> 
-                                            <option value=""></option>
-                                        </select>
-                                    </div>
+                                    <div class="col-sm-4 m-0 p-0"> <label for="under">Under :</label></div>
+                                    <div class="col-sm-8 m-0 p-0">
+                                         <input class="form-control"  type="text" name="under_name"
+                                         style="width: 38%;margin-left: -25%;"
+                                                id="primary-text" onfocus="showList()"
+                                               placeholder="Primary" autocomplete="off">
+                                               
+                                              
+            
+                                    </div> 
                                 </div>
                                 <div class="row container-fluid  p-2 m-0">
                                     <div class="col-sm-2 m-0 p-0"> <label for="date">Date of joining</label></div>
-                                    <div class="col-sm-3 m-0 p-0"><input type="date" class="form-control" id="date" placeholder=""></div>
+                                    <div class="col-sm-3 m-0 p-0"><input type="date" class="form-control" id="date" placeholder="" name="doj"></div>
                                     <div class="col-sm-7 m-0 p-0"></div>
                                 </div>
                                 <div class="row container-fluid  p-2 m-0">
                                     <div class="col-sm-2 m-0 p-0"> <label for="salary">Define salary details</label></div>
                                     <div class="col-sm-3 m-0 p-0">
-                                        <select name="Activate" id="salary" class="form-control">
+                                        <select name="salary" id="salary" class="form-control">
                                             <option value="No">No</option> 
                                             <option value="Yes">Yes</option>
                                         </select> <br><br>
@@ -73,44 +89,44 @@
                     
                                             <div class="row container-fluid  p-2">
                                                 <div class="col-sm-6 m-0 p-0"> <label for="empno">Employee Number</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="empno" placeholder=""></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="empno" class="form-control" id="empno" placeholder=""></div>
                                             </div>
                     
                                             <div class="row container-fluid  p-2">
                                                 <div class="col-sm-6 m-0 p-0"> <label for="desig">Designation</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="desig" placeholder=""></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="designation" class="form-control" id="desig" placeholder=""></div>
                                             </div>
                     
                                             <div class="row container-fluid  p-2">
                                                 <div class="col-sm-6 m-0 p-0"> <label for="fn">Function</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="fn" placeholder=""></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="function_name" class="form-control" id="fn" placeholder=""></div>
                                             </div>
                     
                                             <div class="row container-fluid  p-2">
                                                 <div class="col-sm-6 m-0 p-0"> <label for="loc">Location</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="loc" placeholder=""></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="location" class="form-control" id="loc" placeholder=""></div>
                                             </div>
                     
                                             <div class="row container-fluid  p-2">
                                                 <div class="col-sm-6 m-0 p-0"> <label for="gender">Gender</div>
                                                 <div class="col-sm-6 m-0 p-0">
-                                                    <select name="Activate" id="gender" class="form-control">
+                                                    <select name="gender" id="gender" class="form-control">
                                                         <option value="male">Male</option> 
                                                         <option value="female">Female</option>
-                                                        <option value="trans">Transgender</option>
+                                                        <option value="other">Other</option>
                                                     </select>
                                                 </div>
                                             </div>
                     
                                             <div class="row container-fluid  p-2">
                                                 <div class="col-sm-6 m-0 p-0"> <label for="dob">Date of birth</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="dob" placeholder=""></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="dob" class="form-control" id="dob" placeholder=""></div>
                                             </div>
                     
                                             <div class="row container-fluid  p-2">
                                                 <div class="col-sm-6 m-0 p-0"> <label for="blood">Blood Group</div>
                                                 <div class="col-sm-6 m-0 p-0">
-                                                    <select name="Activate" id="blood" class="form-control">
+                                                    <select name="bld_grp" id="blood" class="form-control">
                                                         <option value="A+ve">A+ve</option> 
                                                         <option value="B+ve">B+ve</option> 
                                                         <option value="O+ve">O+ve</option> 
@@ -126,31 +142,28 @@
                     
                                             <div class="row container-fluid  p-2">
                                                 <div class="col-sm-6 m-0 p-0"> <label for="prnts">Father's /Mother's Name</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="prnts" placeholder=""></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="father_mother" class="form-control" id="prnts" placeholder=""></div>
                                             </div>
                     
                                             <div class="row container-fluid  p-2">
                                                 <div class="col-sm-6 m-0 p-0"> <label for="spouse">Spouse's Name</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="spouse" placeholder=""></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="spouse" class="form-control" id="spouse" placeholder=""></div>
                                             </div>
                     
                                             <div class="row container-fluid  p-2">
                                                 <div class="col-sm-6 m-0 p-0"> <label for="adrs">Address</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><textarea type="text" rows="4" class="form-control" id="adrs" placeholder=""></textarea></div>
+                                                <div class="col-sm-6 m-0 p-0"><textarea type="text" name="address" rows="4" class="form-control" id="adrs" placeholder=""></textarea></div>
                                             </div>
                     
                                             <div class="row container-fluid  p-2">
                                                 <div class="col-sm-6 m-0 p-0"> <label for="phno">Phone Number</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="phno" placeholder=""></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="phn" class="form-control" id="phno" placeholder=""></div>
                                             </div>
                                             <div class="row container-fluid  p-2">
                                                 <div class="col-sm-6 m-0 p-0"> <label for="email">Email</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="Email" class="form-control" id="email" placeholder=""></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="Email" name="email" class="form-control" id="email" placeholder=""></div>
                                             </div>
-                
-                    
-                    
-                                            
+            
                                         </div>
                                     
                                     
@@ -160,41 +173,44 @@
                                             <div class="row container-fluid  p-2">
                                                 <div class="col-sm-6 m-0 p-0"> <label for="bank">Provide bank details</label></div>
                                                 <div class="col-sm-6 m-0 p-0">
-                                                    <select name="Activate" id="bank" class="form-control">
+                                                    <select  onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" 
+                                                    name="bank" id="bank_id" class="form-control" onchange="getBank()">
                                                         <option value="No">No</option> 
-                                                        <option value="Yes">Yes</option>
+                                                        <option value="/bank">Yes</option>
                                                     </select>
                                                 </div>
                                             </div>
+
+                
                                         <hr>
     
                                         <div class="row container-fluid  p-2">
                                             <div class="col-sm-6 m-0 p-0"> <label for="intax">Income Tax Number</label></div>
-                                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="intax" placeholder=""></div>
+                                            <div class="col-sm-6 m-0 p-0"><input type="text" name="incometax" class="form-control" id="intax" placeholder=""></div>
                                         </div>
                                         <div class="row container-fluid  p-2">
                                             <div class="col-sm-6 m-0 p-0"> <label for="aadhar">Aadhar Number</label></div>
-                                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="aadhar" placeholder=""></div>
+                                            <div class="col-sm-6 m-0 p-0"><input type="text" name="adhar" class="form-control" id="aadhar" placeholder=""></div>
                                         </div>
                 
                                         <div class="row container-fluid  p-2">
                                             <div class="col-sm-6 m-0 p-0"> <label for="uan">Universal Account Number(UAN)</label></div>
-                                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="uan" placeholder=""></div>
+                                            <div class="col-sm-6 m-0 p-0"><input type="text" name="uan" class="form-control" id="uan" placeholder=""></div>
                                         </div>
                 
                                         <div class="row container-fluid  p-2">
                                             <div class="col-sm-6 m-0 p-0"> <label for="pfn">PF Account Number(PFN)</label></div>
-                                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="pfn" placeholder=""></div>
+                                            <div class="col-sm-6 m-0 p-0"><input type="text" name="pf" class="form-control" id="pfn" placeholder=""></div>
                                         </div>
                 
                                         <div class="row container-fluid  p-2">
                                             <div class="col-sm-6 m-0 p-0"> <label for="prn">PR Account Number(PRAN)</label></div>
-                                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="prn" placeholder=""></div>
+                                            <div class="col-sm-6 m-0 p-0"><input type="text" name="pr" class="form-control" id="prn" placeholder=""></div>
                                         </div>
                 
                                         <div class="row container-fluid  p-2">
                                             <div class="col-sm-6 m-0 p-0"> <label for="esi">ESI Number(ESIN)</label></div>
-                                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="esi" placeholder=""></div>
+                                            <div class="col-sm-6 m-0 p-0"><input type="text" name="esi" class="form-control" id="esi" placeholder=""></div>
                                         </div>
                                         
                                     </div>
@@ -213,6 +229,65 @@
             
                 </div>
 
+                <!-- list Creation -->
+
+ <div class="form-popup" id="list-div" >
+  
+    <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of Employee Groups</h6>
+<hr >
+<div>
+    <table >
+    <tr >
+        <td>
+          <a href="emloyee_group_secondary"><button
+                type="submit"
+                style="color: black;margin-left: 310%; width: 10%"
+                class="custom-select-md form-control"
+              >
+                create
+              </button></a>
+        </td>
+    </tr>
+
+    <tr>
+      <td>    
+
+        {% for l in emp %}
+        <div onclick="hideList('{{l.name}}')" style="color: black;" >{{l.name}}</div>
+        {% endfor %}
+      </td>
+    </tr>  
+    
+    </table>
+</div>
+
+
+ </div>
+
+                
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                
+                <script>
+                   
+                      
+                    function passvalues()
+                    {
+                        var name=document.getElementById("a").value;
+                        //console.log(name);
+                        localStorage.setItem("name", name);
+                        var a=localStorage.getItem("name");
+                        //console.log(a);
+                    }
+                    function showList() {
+                        document.getElementById("list-div").style.visibility = "visible";
+                    }
+                    function hideList(valueDIv) {
+                        document.getElementById("primary-text").value=valueDIv;
+                        document.getElementById("list-div").style.visibility = "hidden";
+                    }
+
+                </script>
 
 
 

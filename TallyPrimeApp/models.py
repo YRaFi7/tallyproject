@@ -56,3 +56,42 @@ class cost(models.Model):
     alias=models.CharField(max_length=100)
     under_name=models.CharField(max_length=50)
     
+class employee_crt(models.Model):
+    name=models.CharField(max_length=100)
+    alias=models.CharField(max_length=100)
+    under_name=models.CharField(max_length=50)
+    doj=models.CharField(max_length=30)
+    salary=models.CharField(max_length=50)
+    empno=models.CharField(max_length=20)
+    designation=models.CharField(max_length=20)
+    function_name=models.CharField(max_length=20)
+    location=models.CharField(max_length=20)
+    gender=models.CharField(max_length=20)
+    dob=models.CharField(max_length=20)
+    bld_grp=models.CharField(max_length=20)
+    father_mother=models.CharField(max_length=20)
+    spouse=models.CharField(max_length=20)
+    address=models.CharField(max_length=50)
+    phn=models.CharField(max_length=20)
+    email=models.CharField(max_length=20)
+    bank=models.CharField(max_length=50)
+    incometax=models.CharField(max_length=20)
+    adhar=models.CharField(max_length=20)
+    uan=models.CharField(max_length=20)
+    pf=models.CharField(max_length=20)
+    pr=models.CharField(max_length=20)
+    esi=models.CharField(max_length=20)
+
+class bank(models.Model):
+    accno=models.CharField(max_length=50)
+    ifsc_Code=models.CharField(max_length=50)
+    bank_name=models.CharField(max_length=50)
+    branch=models.CharField(max_length=50)
+    
+class bank_crt(models.Model):
+    accno=models.CharField(max_length=50)
+    ifsc_Code=models.CharField(max_length=50)
+    bank_name=models.CharField(max_length=50)
+    branch=models.CharField(max_length=50)
+        
+    

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 
-from TallyPrimeApp.models import CreateEmployeeGrp, CreateGodown, CreateStockCateg, CreateStockGrp, UnitCrt, Price_level, cost, pancin
+from TallyPrimeApp.models import CreateEmployeeGrp, CreateGodown, CreateStockCateg, CreateStockGrp, UnitCrt, Price_level, bank_crt, cost, employee_crt, pancin
 
 
 # Create your views here.
@@ -55,11 +55,10 @@ def stock_category_secondary(request):
         under_name=request.POST['under_name']
         stockCateg=CreateStockCateg(name=name,alias=alias,under_name=under_name)
         stockCateg.save()
+        return redirect('stock_category_creation')
     return render(request,'stock_category(secondary).html',{'und':und})
 
     
-
-
 
 def stock_items(request):
     return render(request,'stock_items.html')
@@ -160,7 +159,45 @@ def emloyee_group_secondary(request):
     
 
 def employee_creation(request):
-    return render(request,'employee_creation.html')
+    emp=employee_crt.objects.all()
+    if request.method=='POST':
+        name=request.POST['name']
+        alias=request.POST['alias']
+        under_name=request.POST['under_name']
+        doj=request.POST['doj']
+        salary=request.POST['salary']
+        empno=request.POST['empno']
+        designation=request.POST['designation']
+        function_name=request.POST['function_name']
+        location=request.POST['location']
+        gender=request.POST['gender']
+        dob=request.POST['dob']
+        bld_grp=request.POST['bld_grp']
+        father_mother=request.POST['father_mother']
+        spouse=request.POST['spouse']
+        address=request.POST['address']
+        phn=request.POST['phn']
+        email=request.POST['email']
+        bank=request.POST['bank']
+        incometax=request.POST['incometax']
+        adhar=request.POST['adhar']
+        uan=request.POST['uan']
+        pf=request.POST['pf']
+        pr=request.POST['pr']
+        esi=request.POST['esi']
+        crt=employee_crt(name=name,alias=alias,under_name=under_name,doj=doj,salary=salary,empno=empno,designation=designation,
+                         function_name=function_name,location=location,gender=gender,dob=dob,bld_grp=bld_grp,father_mother=father_mother,
+                         spouse=spouse,address=address,phn=phn,email=email,bank=bank,incometax=incometax,adhar=adhar,uan=uan,pf=pf,pr=pr,esi=esi)
+        crt.save()
+        
+        request.session["name"]=name
+     
+        
+        
+                
+    return render(request,'employee_creation.html',{'emp':emp})
+    
+
 
 def price_levels(request):
     price=Price_level.objects.all()
@@ -205,7 +242,17 @@ def pay_head(request):
     return render(request,'pay_head.html')
 
 def bank(request):
-    return render(request,'bank_details.html')
+    emp=CreateEmployeeGrp.objects.all()
+    a=request.session["name"]
+    if request.method=='POST':
+        accno=request.POST['accno']
+        ifsc_Code=request.POST['ifsc_Code']
+        bank_name=request.POST['bank_name']
+        branch=request.POST['branch']
+        crt=bank_crt(accno=accno,ifsc_Code=ifsc_Code,bank_name=bank_name,branch=branch)
+        crt.save
+        return redirect('employee_creation')
+    return render(request,'bank_details.html',{'var':a,'emp':emp})
 
 
 def payroll(request):
@@ -219,5 +266,8 @@ def attendance_seconday(request):
 
 def salary_details(request):
     return render(request,'salary_details.html')
+
+def stock_item_allocations(request):
+    return render(request,'allocation_stock_item.html')
 
 

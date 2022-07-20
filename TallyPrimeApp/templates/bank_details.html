@@ -42,25 +42,26 @@
     <h6  class="bg-info text-light p-2">Bank Details Creation</h6>
     
 
-<form id="" action="stock_category_creation" method="post" class="p-5">
+<form id="" action="bank" method="post" class="p-5">
         {% csrf_token %}
 
 
-                <h6  style="margin-top: -40px;">  <center> Bank details for:  </center></h6><br><br>
+                <h6   style="margin-top: -40px;margin-left: -15%;">  <center> Bank details for:   </center></h6><br><br>
+                <h6 id="loc" style="margin-top: -70px;margin-left: 55%;"></h6> <br><br>
 
                 <h5> <center> <u> For Statuatory And Payroll Reports </u> </center></h5>
 
                 <div style="margin-top: 5%;">
                     <div class="row container-fluid  p-2 m-0">
-                        <div class="col-sm-4 m-0 p-0"> <label for="gname">Acc no :</label></div>
-                        <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="acc"
+                        <div class="col-sm-4 m-0 p-0"> <label for="acc_no">Acc no :</label></div>
+                        <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="accno"
                             style="width: 50%;margin-left: 20%;" id="alias" 
                             placeholder="" autocomplete="off"/></div> 
                     </div>
 
                     <div class="row container-fluid  p-2 m-0">
                         <div class="col-sm-4 m-0 p-0"> <label for="alia">IFSC Code :</label></div>
-                        <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="ifsc"
+                        <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="ifsc_Code"
                             style="width: 50%;margin-left: 20%;" id="alias" 
                             placeholder="" autocomplete="off"></div> 
                     </div>
@@ -91,6 +92,9 @@
 </form>
 
 </div>
+<script>
+    document.getElementById("loc").innerHTML = localStorage.getItem("name"); 
+</script>
 </div>
 </div>
 
