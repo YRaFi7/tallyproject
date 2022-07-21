@@ -1,7 +1,7 @@
-from pyexpat import model
-from statistics import mode
-from unicodedata import name
+
 from django.db import models
+
+
 
 # Create your models here.
 
@@ -94,4 +94,38 @@ class bank_crt(models.Model):
     bank_name=models.CharField(max_length=50)
     branch=models.CharField(max_length=50)
         
+        
+class attendance_crt(models.Model):
+    name=models.CharField(max_length=100,null=True)
+    alias=models.CharField(max_length=100,null=True)
+    under_name=models.CharField(max_length=50,null=True)
+    attendance=models.CharField(max_length=50,null=True)
+    period=models.CharField(max_length=50,null=True)
+    units=models.CharField(max_length=50,null=True)
+    
+class payhead_crt(models.Model):
+    name=models.CharField(max_length=100,null=True)
+    alias=models.CharField(max_length=100,null=True)
+    payhead_type=models.CharField(max_length=100,null=True)
+    income_type=models.CharField(max_length=100,null=True)
+    under_name=models.CharField(max_length=100,null=True)
+    net_salary=models.CharField(max_length=100,null=True)
+    pay_slip_name=models.CharField(max_length=100,null=True)
+    currency_ledger=models.CharField(max_length=100,null=True)
+    calculation_type=models.CharField(max_length=100,null=True)
+    
+class salary_crt(models.Model):
+    name=models.CharField(max_length=50,null=True)
+    alias=models.CharField(max_length=50,null=True)
+    date=models.CharField(max_length=100,null=True)
+    pay_head_name=models.CharField(max_length=100,null=True)
+    rate=models.CharField(max_length=100,null=True)
+    per=models.CharField(max_length=100,null=True)
+    pay_head_type=models.CharField(max_length=100,null=True)
+    calculation_type=models.CharField(max_length=100,null=True)
+    
+    
+    
+    
+    
     

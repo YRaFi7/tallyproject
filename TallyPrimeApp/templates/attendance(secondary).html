@@ -30,6 +30,18 @@
         height: 200px;
       
       }
+      .form-uqc{
+        visibility: hidden;       
+        position: fixed;
+        top: 230px;
+        right: 15px;
+        background-color: rgb(216, 232, 238); 
+        border: 1px solid #f1f1f1;
+        z-index: 9;
+        width: 300px;
+        height: 200px;
+
+      }
     
 
 
@@ -38,11 +50,11 @@
 <div class="row container-fluid p-0 " >
     <div class="col-sm-3 m-0 p-0"></div>
     <div class="col-sm-6 m-0 p-0" style=" background-color:rgba(0,0,0,0.2);">
-        <a href="javascript:history.go(-1);" class="close">+</a>
+       
     <h6  class="bg-info text-light p-2">Attendance/Production Type Creation(Secondary)</h6>
     
 
-<form id="" action="stock_category_secondary" method="post" class="p-5">
+<form id="" action="attendance_seconday" method="post" class="p-5">
         {% csrf_token %}
    
                     <div class="row container-fluid  p-2 m-0">
@@ -73,27 +85,29 @@
                     <div class="row container-fluid  p-2 m-0"">
                         <div class="col-sm-4 m-0 p-0"> <label for="attendance">Attendance Type :</label></div>
                         <div class="col-sm-8 m-0 p-0">
-                        <select name="attendance" id="" class="custom-select-md form-control " style="width: 50%;margin-left: 20%;" ">
-                            <option value="">Attendance/Leave with Pay</option>
-                            <option value="">Leave without Pay</option>
-                            <option value="">Production</option>
-                            <option value="">User Defined Calendar Type</option>
+                        <select name="attendance" id="type" class="custom-select-md form-control " style="width: 50%;margin-left: 20%;" 
+                        onchange="show()">
+                            <option value="">--select--</option>
+                            <option value="leave_with_pay">Attendance/Leave with Pay</option>
+                            <option value="leave_without_pay">Leave without Pay</option>
+                            <option value="production">Production</option>
+                            <option value="user_defined">User Defined Calendar Type</option>
                         </select></div>
                     </div>
 
-                    <div class="row container-fluid  p-2 m-0">
+                    <div class="row container-fluid  p-2 m-0" id="pt"  style="visibility: hidden;">
                       <div class="col-sm-4 m-0 p-0"> <label for="alia">Period Type :</label></div>
                       <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="period" value="Days"
                           style="width: 50%;margin-left: 20%;" id="alias" 
                           placeholder="" autocomplete="off"></div> 
                   </div>
 
-                  <div class="row container-fluid  p-2 m-0">
-                    <div class="col-sm-4 m-0 p-0"> <label for="alia">Units :</label></div>
+                  <div class="row container-fluid  p-2 m-0" id="uni"  style="visibility: hidden;">
+                    <div class="col-sm-4 m-0 p-0"> <label for="unitss">Units :</label></div>
                     <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="units" 
                         style="width: 50%;margin-left: 20%;" 
                         placeholder="" autocomplete="off"
-                        id="units" 
+                        id="secondary-text" 
                         onfocus="showUnits()"></div> 
                 </div>
 
@@ -114,7 +128,7 @@
 
  <div class="form-popup" id="list-div" >
   
-    <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of Stock Category</h6>
+    <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of Attendance Type</h6>
 <hr >
 <div>
     <table >
@@ -133,7 +147,7 @@
     <tr>
       <td>    
 
-        {% for l in und %}
+        {% for l in att %}
         <div onclick="hideList('{{l.name}}')" style="color: black;" >{{l.name}}</div>
         {% endfor %}
       </td>
@@ -149,29 +163,19 @@
 
  <!-- list of units -->
 
- <div class="form-popup" id="list-div" >
+ <div class="form-uqc" id="list-units" >
   
-  <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of UQC</h6>
+  <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of Units</h6>
 <hr >
 <div>
   <table >
-  <tr >
-      <td>
-         <a href="uqc"> <button
-              type="submit"
-              style="color: black;margin-left: 310%; width: 20%"
-              class="custom-select-md form-control"
-            >
-              create
-            </button></a>
-      </td>
-  </tr>
+  
 
   <tr>
     <td>    
 
-      {% for l in unit %}
-    <div onclick="hideList('{{l.uqc}}')" style="color:black;" >{{l.uqc}}</div>
+      {% for l in att %}
+    <div onclick="hideUnit('{{l.units}}')" style="color:black;" >{{l.units}}</div>
     {% endfor %}
     </td>
   </tr>  
@@ -196,8 +200,44 @@
     document.getElementById("list-div").style.visibility = "hidden";
   }
   function showUnits(){
-    document.getElementById()
+    document.getElementById("list-units").style.visibility = "visible";
   }
+  function hideUnit(valueDivNew) {
+    document.getElementById("secondary-text-text").value=valueDivNew;
+    document.getElementById("list-units").style.visibility = "hidden";
+  }
+
+  function show(){
+        var status=document.getElementById("type");
+        var c=status.value;
+
+        if (c=='leave_with_pay'){
+         document.getElementById('pt').style.visibility="visible";
+         document.getElementById('uni').style.display="none";
+        }
+        else if(c=='leave_without_pay'){
+         document.getElementById('pt').style.visibility="";
+         document.getElementById('uni').style.display="none";
+        }
+        else if(c=='production'){
+        document.getElementById('uni').style.visibility="";
+         document.getElementById('pt').style.display="none";
+        }
+        else if(c=='leave_without_pay'){
+         document.getElementById('pt').style.visibility="";
+         document.getElementById('uni').style.display="none";
+        }
+        else {
+         document.getElementById('pt').style.display="none";
+         document.getElementById('uni').style.display="none";
+
+        }
+
+
+
+
+
+    }
   // function color(value){
   //   document.body.style.backgroundColor="rgba(255, 0, 0, 0.4)";
 

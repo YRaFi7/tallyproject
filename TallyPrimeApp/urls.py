@@ -40,6 +40,9 @@ urlpatterns=[
     
     path('payroll',views.payroll,name='payroll'),
     
+    path('load/',views.load,name="load"),
+    path('load_calculation/',views.load_calculation,name='load_calculation'),
+    
     path('bank',views.bank,name='bank')
     
     

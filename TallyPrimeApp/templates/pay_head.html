@@ -3,16 +3,20 @@
 
 <style>
 
-.close {
-        position: absolute;
-        top: 3px;
-        right: 8px;
-        font-size: 25px;
-        color: rgb(255, 255, 255);
-        transform: rotate(45deg);
-        cursor: pointer;
-        text-decoration: none;
-    }
+
+    .form-popup {
+        visibility: hidden;       
+        position: fixed;
+        top: 230px;
+        right: 15px;
+        background-color: rgb(216, 232, 238); 
+        border: 1px solid #f1f1f1;
+        z-index: 9;
+        width: 300px;
+        height: 200px;
+      
+      }
+    
 </style>
 
 
@@ -20,16 +24,19 @@
         <div class="row container-fluid p-0 " >
             <div class="col-sm-3 m-0 p-0"></div>
             <div class="col-sm-6 m-0 p-0" style=" background-color:rgba(0,0,0,0.2);">
-                <a href="javascript:history.go(-1);" class="close">+</a>
+               
             <h6  class="bg-info text-light p-2">Pay Head Creation</h6>
+
+            <form id="" action="pay_head" method="post" class="p-5">
+                {% csrf_token %}
             
                 <div class="col-md-12">
                     <label for="" style="margin-top: 20px;">Name</label>
-                    <input class="custom-select-md form-control " style="width: 40%;"  type="text">
+                    <input class="custom-select-md form-control " name="name" style="width: 40%;"  type="text">
                 </div>
                 <div class="col-md-12">
                     <label for="" style="margin-top:20px ;">(alias)</label>
-                    <input class="custom-select-md form-control " style="width: 40%;" type="text"><br><br>
+                    <input class="custom-select-md form-control  " name="alias"  style="width: 40%;" type="text"><br><br>
                 </div>
 
                 <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
@@ -40,7 +47,7 @@
                                 <div class="row container-fluid  p-2 ">
                                     <div class="col-sm-6 m-0 p-0"> <label for="gender" style="margin-left: 30px;">Pay heads type</div>
                                     <div class="col-sm-6 m-0 p-0" style="margin-left: 30px;">
-                                        <select name="Activate" id="" class="form-control">
+                                        <select name="payhead_type" id="" class="form-control">
                                             <option value="Not Applicable">Not Applicable</option>
                                     <option value="Deductions From Employees">Deductions From Employees</option>
                                     <option value="Earnings for Employees">Earnings for Employees</option>
@@ -53,17 +60,22 @@
 
                                 <div class="row container-fluid  p-2">
                                     <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Income type</label></div>
-                                    <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="loc" placeholder=""></div>
+                                    <div class="col-sm-6 m-0 p-0"><select name="income_type" id="type" class="form-control"  onchange="show()">
+                                    <option value="fixed">Fixed</option>
+                                    <option value="variable">Variable</option>
+                                    </select>
+
+                                    </div>
                                 </div>
 
                                 <div class="row container-fluid  p-2">
                                     <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Under</label></div>
-                                    <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="loc" placeholder=""></div>
+                                    <div class="col-sm-6 m-0 p-0"><input type="text" name="under_name" class="form-control" id="loc" placeholder=""></div>
                                 </div>
                                 
                                 <div class="row container-fluid  p-2">
                                     <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Affect net salary</label></div>
-                                    <div class="col-sm-6 m-0 p-0"><select name="Activate" id="" class="form-control">
+                                    <div class="col-sm-6 m-0 p-0"><select name="net_salary" id="" class="form-control">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
                                     </select>
@@ -72,34 +84,101 @@
                                 </div>
                                 <div class="row container-fluid  p-2">
                                     <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Name to be displayed in payslip</label></div>
-                                    <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="loc" placeholder=""></div>
+                                    <div class="col-sm-6 m-0 p-0"><input type="text" name="pay_slip_name" class="form-control" id="" placeholder=""></div>
                                 </div>
                                 <div class="row container-fluid  p-2">
                                     <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Currency of ledger</label></div>
-                                    <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="loc" placeholder=""></div>
+                                    <div class="col-sm-6 m-0 p-0"><input type="text" name="currency_ledger" class="form-control" id="" placeholder=""></div>
                                 </div>
                                 <div class="row container-fluid  p-2">
                                     <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Calculation type</label></div>
-                                    <div class="col-sm-6 m-0 p-0"><select name="Activate" id="" class="form-control">
-                                    <option value="Not Applicable">Not Applicable</option>
-                                    <option value="On Attendance">On Attendance</option>
+                                    <div class="col-sm-6 m-0 p-0"><select name="calculation_type" id="ctype" class="form-control"  onchange="show()">
+                                    <option value="not_applicable">Not Applicable</option>
+                                    <option value="on_attendance">On Attendance</option>
                                     </select>
 
                                     </div>
                                 </div>
+
+                                <div class="row container-fluid  p-2 " id="attl" style="visibility: hidden;">
+                                    <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Attendance/Leave with Pay</label></div>
+                                    <div class="col-sm-6 m-0 p-0"><input type="text" name="" class="form-control" id="alp" placeholder=""
+                                        onfocus="showList()"></div>
+                                </div>
+
+
+
                                 <div class="flexy w-100 py-4"><button class="btn btn-info w-25" style="margin-left: 47%;">Create</button></div>
                                 
 
 
                         
                 </div>
-                
+
+            </form>
+            
             </div>
             
 
                 </div>
 
         </div>
+
+        <!-- list Creation -->
+
+ 
+
+ <div class="form-popup" id="list-div" >
+  
+    <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of Groups</h6>
+  <hr >
+  <div>
+    <table >
+    
+  
+    <tr>
+      <td>    
+  
+        {% for l in att %}
+      <div onclick="hideList('{{l.name}}')" style="color:black;" >{{l.name}}</div>
+      {% endfor %}
+      </td>
+    </tr>  
+    
+    </table>
+  </div>
+  
+  </div>
+
+
+ <script>
+    function showList(){
+        document.getElementById("list-div").style.visibility="visible";
+    }
+
+    function hideList(valueDIv) {
+        document.getElementById("alp").value=valueDIv;
+        document.getElementById("list-div").style.visibility = "hidden";
+    }
+
+    function show(){
+        var status=document.getElementById("ctype");
+        
+        var c=status.value;
+        
+        if (c=='on_attendance'){
+         document.getElementById('attl').style.visibility="";
+        }
+        else if(c=='not_applicable'){
+            document.getElementById('alp').style.display="none";
+        }
+
+
+
+
+    }
+ </script>
+
 
     
 

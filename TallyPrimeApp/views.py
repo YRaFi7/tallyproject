@@ -1,6 +1,7 @@
+
 from django.shortcuts import render,redirect
 
-from TallyPrimeApp.models import CreateEmployeeGrp, CreateGodown, CreateStockCateg, CreateStockGrp, UnitCrt, Price_level, bank_crt, cost, employee_crt, pancin
+from TallyPrimeApp.models import CreateEmployeeGrp, CreateGodown, CreateStockCateg, CreateStockGrp, UnitCrt, Price_level, attendance_crt, bank_crt,  employee_crt, pancin, payhead_crt, salary_crt
 
 
 # Create your views here.
@@ -239,7 +240,29 @@ def pan_cin(request):
 #     return redirect('show_emp')
 
 def pay_head(request):
-    return render(request,'pay_head.html')
+    att=attendance_crt.objects.all()
+    if request.method=='POST':
+        name=request.POST['name']
+        alias=request.POST['alias']
+        payhead_type=request.POST['payhead_type']
+        under_name=request.POST['under_name']
+        net_salary=request.POST['net_salary']
+        pay_slip_name1=request.POST['pay_slip_name']
+        currency_ledger=request.POST['currency_ledger']
+        calculation_type=request.POST['calculation_type']
+        crt=payhead_crt(name=name,alias=alias,payhead_type=payhead_type,under_name=under_name,net_salary=net_salary,pay_slip_name=pay_slip_name1,currency_ledger=currency_ledger,calculation_type=calculation_type)
+        crt.save()
+    return render(request,'pay_head.html',{'att':att})
+
+def load(request):
+    did=request.GET.get("id")
+    obj=payhead_crt.objects.get(name=did)
+    return render(request,"load.html",{"obj":obj})
+
+def load_calculation(request):
+    did=request.GET.get("id")
+    obj=payhead_crt.objects.get(name=did)
+    return render(request,"load_calculation.html",{"obj":obj})
 
 def bank(request):
     emp=CreateEmployeeGrp.objects.all()
@@ -259,13 +282,46 @@ def payroll(request):
     return render(request,'payroll_voucher_type.html')
 
 def attendance(request):
-    return render(request,'attendance.html')
+    att=attendance_crt.objects.all()
+    if request.method=='POST':
+        name=request.POST['name']
+        alias=request.POST['alias']
+        under_name=request.POST['under_name']
+        attendance=request.POST['attendance']
+        period=request.POST['period']
+        units=request.POST['units']
+        crt=attendance_crt(name=name,alias=alias,under_name=under_name,attendance=attendance,period=period,units=units)
+        crt.save()
+    return render(request,'attendance.html',{'att':att})
+
 
 def attendance_seconday(request):
-    return render(request,'attendance(secondary)).html')
+    att=attendance_crt.objects.all()
+    if request.method=='POST':
+        name=request.POST['name']
+        alias=request.POST['alias']
+        under_name=request.POST['under_name']
+        attendance=request.POST['attendance']
+        period=request.POST['period']
+        units=request.POST['units']
+        crt=attendance_crt(name=name,alias=alias,under_name=under_name,attendance=attendance,period=period,units=units)
+        crt.save()
+    return render(request,'attendance(secondary).html',{'att':att})
 
 def salary_details(request):
-    return render(request,'salary_details.html')
+    pay=payhead_crt.objects.all()
+    if request.method=='POST':
+        name=request.POST['name']
+        alias=request.POST['alias']
+        date=request.POST['date']
+        name=request.POSt['pay_head_name']
+        rate=request.POST['rate']
+        per=request.POST['per']
+        pay_head_type=request.POSt['pay_head_type']
+        calculation_type=request.POST['calculation_type']
+        crt=salary_crt(name=name,alias=alias,date=date,pay_head_type=pay_head_type,rate=rate,per=per,calculation_type=calculation_type)
+        crt.save()
+    return render(request,'salary_details.html',{'pay':pay})
 
 def stock_item_allocations(request):
     return render(request,'allocation_stock_item.html')
