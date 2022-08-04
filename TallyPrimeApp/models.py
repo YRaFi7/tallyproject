@@ -1,4 +1,6 @@
 
+from bdb import effective
+from decimal import Underflow
 from django.db import models
 
 
@@ -13,22 +15,16 @@ class CreateStockGrp(models.Model):
     under_name=models.CharField(max_length=50)
     quantities=models.CharField(max_length=50)
     
-
 class CreateStockCateg(models.Model):
     name=models.CharField(max_length=100)
     alias=models.CharField(max_length=100)
     under_name=models.CharField(max_length=50)
     
-
-    
-    
-    
 class CreateGodown(models.Model):
     name=models.CharField(max_length=100)
     alias=models.CharField(max_length=100)
     under_name=models.CharField(max_length=50)
-    
-    
+      
 class CreateEmployeeGrp(models.Model):
     name=models.CharField(max_length=100)
     alias=models.CharField(max_length=100)
@@ -93,8 +89,7 @@ class bank_crt(models.Model):
     ifsc_Code=models.CharField(max_length=50)
     bank_name=models.CharField(max_length=50)
     branch=models.CharField(max_length=50)
-        
-        
+             
 class attendance_crt(models.Model):
     name=models.CharField(max_length=100,null=True)
     alias=models.CharField(max_length=100,null=True)
@@ -124,8 +119,49 @@ class salary_crt(models.Model):
     pay_head_type=models.CharField(max_length=100,null=True)
     calculation_type=models.CharField(max_length=100,null=True)
     
+class payroll_crt(models.Model):
+    name=models.CharField(max_length=100,null=True)
+    allias=models.CharField(max_length=100,null=True)
+    voucher_type=models.CharField(max_length=100,null=True)
+    abbreviation=models.CharField(max_length=100,null=True)
+    activate_voucher=models.CharField(max_length=100,null=True)
+    voucher_numbering_method=models.CharField(max_length=100,null=True)
+    effective_dates=models.CharField(max_length=100,null=True)
+    zero_val_transactions=models.CharField(max_length=100,null=True)
+    optional_voucher=models.CharField(max_length=100,null=True)
+    narration_voucher=models.CharField(max_length=100,null=True)
+    ledger_narration=models.CharField(max_length=100,null=True)
+    print_voucher=models.CharField(max_length=100,null=True)
+    classs=models.CharField(max_length=100,null=True)
+    
+class stock_item_crt(models.Model):
+    name=models.CharField(max_length=100,null=True)
+    alias=models.CharField(max_length=100,null=True)
+    under=models.CharField(max_length=100,null=True)
+    category=models.CharField(max_length=100,null=True)
+    units=models.CharField(max_length=100,null=True)
+    batches=models.CharField(max_length=100,null=True)
+    manufacturing_date=models.CharField(max_length=100,null=True)
+    expiry_dates=models.CharField(max_length=100,null=True)
+    rate_of_duty=models.CharField(max_length=100,null=True)
+    quantity=models.CharField(max_length=100,null=True)
+    rate=models.CharField(max_length=100,null=True)
+    per=models.CharField(max_length=100,null=True)
+    value=models.CharField(max_length=100,null=True)
+    
+class Price_level_crt(models.Model):
+    number=models.CharField(max_length=100,null=True)
     
     
+    
+class allocate_stock(models.Model):
+    allocate=models.CharField(max_length=100,null=True)
+    for_allocate=models.CharField(max_length=100,null=True)
+    godown=models.CharField(max_length=100,null=True)
+    quantity=models.CharField(max_length=100,null=True)
+    rate=models.CharField(max_length=100,null=True)
+    per=models.CharField(max_length=100,null=True)
+    amount=models.CharField(max_length=100,null=True)
     
     
     

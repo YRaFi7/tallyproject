@@ -31,7 +31,7 @@
                         
                     <h6  class="bg-info text-light p-2">Salary Details Creation</h6>
 
-                    <form id="" action="stock_group_secondary" method="post" class="p-5">
+                    <form id="" action="salary_details" method="post" class="p-5">
                         {% csrf_token %} 
                    
 
@@ -66,10 +66,11 @@
                                     <tbody>                   
                                         <tr>
                                        
-                                            <td><input class="custom-select-md form-control" type="date" name="effective"
+                                            <td><input class="custom-select-md form-control" type="date" name="date"
                                                  id="" 
                                                 placeholder="" autocomplete="off"/></td>
-                                            <td width=""><input class="custom-select-md form-control" type="text" name="payhead"
+
+                                            <td width=""><input class="custom-select-md form-control" type="text" name="pay_head_name"
                                                 id="primary-text" 
                                                placeholder="" autocomplete="off"
                                                onfocus="showList()" > </td>
@@ -79,7 +80,7 @@
                                             <td width="100"> <input class="custom-select-md form-control" type="number" name="per"
                                                 id="" 
                                                placeholder="" autocomplete="off"/></td>
-                                            <td><input class="custom-select-md form-control" type="text" name="payheaad_type"
+                                            <td><input class="custom-select-md form-control" type="text" name="pay_head_type"
                                                 id="payheaad_type" 
                                                placeholder="" autocomplete="off"/> </td>
                                             <td><input class="custom-select-md form-control" type="text" name="calculation_type"

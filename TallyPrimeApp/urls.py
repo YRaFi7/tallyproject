@@ -43,7 +43,16 @@ urlpatterns=[
     path('load/',views.load,name="load"),
     path('load_calculation/',views.load_calculation,name='load_calculation'),
     
-    path('bank',views.bank,name='bank')
+    path('bank',views.bank,name='bank'),
+    
+    path('stock_item_allocations',views.stock_item_allocations,name='stock_item_allocations')
+    
+   
+    
+    
+    
+    
+    
     
     
     

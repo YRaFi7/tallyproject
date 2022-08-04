@@ -1,21 +1,18 @@
 {% extends 'base.html' %}
-{% block body %}
-<style>
-.close {
-        position: absolute;
-        top: 3px;
-        right: 8px;
-        font-size: 25px;
-        color: rgb(255, 255, 255);
-        transform: rotate(45deg);
-        cursor: pointer;
-        text-decoration: none;
-    }
-    .form-popup {
+    {% block body %}
+    {% load static %}
+    <style>
+        .enter{
+            display: flex;
+            align-items: center;
+            justify-content: center;   
+        }
+
+        .form-popup {
         visibility: hidden;       
         position: fixed;
         top: 230px;
-        right: 15px;
+        right: 27px;
         background-color: rgb(216, 232, 238); 
         border: 1px solid #f1f1f1;
         z-index: 9;
@@ -23,275 +20,237 @@
         height: 200px;
       
       }
-
-</style>
-
-
-    <div class="row container-fluid p-0 " style="width: 190%;margin-left:2%;margin-top: 15%;">
-        <div class="col-sm-6 m-0 p-0" style=" background-color:rgba(0,0,0,0.2);">
-            <a href="javascript:history.go(-1);" class="close">+</a>
-        <h6  class="bg-info text-light p-2">Employee Creation</h6>
-
-
-        <form id="" action="employee_creation" method="post" class="p-5">
-            {% csrf_token %}
-                            
-                
-                            <div class="p-3" >
-
-                                <div class="row container-fluid  p-2 m-0">
-                                    <div class="col-sm-2 m-0 p-0"> <label for="a">Name</label></div>
-                                    <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" placeholder="" name="name"
-                                        onblur="passvalues()"></div>
-                                    <div class="col-sm-7 m-0 p-0"></div>
-                                </div>
-
-                                <div class="row container-fluid  p-2 m-0">
-                                    <div class="col-sm-2 m-0 p-0"> <label for="b">Alias</label></div>
-                                    <div class="col-sm-3 m-0 p-0"> 
-                                    <input type="text" class="form-control" id="b" placeholder="" name="alias"></div>
-                                    <div class="col-sm-7 m-0 p-0"></div>
-                                </div>
-                            
-                                <div class="row container-fluid  p-2 m-0">
-                                    <div class="col-sm-4 m-0 p-0"> <label for="under">Under :</label></div>
-                                    <div class="col-sm-8 m-0 p-0">
-                                         <input class="form-control"  type="text" name="under_name"
-                                         style="width: 38%;margin-left: -25%;"
-                                                id="primary-text" onfocus="showList()"
-                                               placeholder="Primary" autocomplete="off">
-                                               
-                                              
-            
-                                    </div> 
-                                </div>
-                                <div class="row container-fluid  p-2 m-0">
-                                    <div class="col-sm-2 m-0 p-0"> <label for="date">Date of joining</label></div>
-                                    <div class="col-sm-3 m-0 p-0"><input type="date" class="form-control" id="date" placeholder="" name="doj"></div>
-                                    <div class="col-sm-7 m-0 p-0"></div>
-                                </div>
-                                <div class="row container-fluid  p-2 m-0">
-                                    <div class="col-sm-2 m-0 p-0"> <label for="salary">Define salary details</label></div>
-                                    <div class="col-sm-3 m-0 p-0">
-                                        <select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" 
-                                         name="salary" id="salary" class="form-control">
-                                            <option value="No">No</option> 
-                                            <option value="/salary_details">Yes</option>
-                                        </select> <br><br>
-                                        <div class="col-sm-7 m-0 p-0"></div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
-                        
-                                        <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
-                                            <h5 class="text-center"><u> General Information </u></h5>
-                    
-                                            <div class="row container-fluid  p-2">
-                                                <div class="col-sm-6 m-0 p-0"> <label for="empno">Employee Number</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="empno" class="form-control" id="empno" placeholder=""></div>
-                                            </div>
-                    
-                                            <div class="row container-fluid  p-2">
-                                                <div class="col-sm-6 m-0 p-0"> <label for="desig">Designation</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="designation" class="form-control" id="desig" placeholder=""></div>
-                                            </div>
-                    
-                                            <div class="row container-fluid  p-2">
-                                                <div class="col-sm-6 m-0 p-0"> <label for="fn">Function</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="function_name" class="form-control" id="fn" placeholder=""></div>
-                                            </div>
-                    
-                                            <div class="row container-fluid  p-2">
-                                                <div class="col-sm-6 m-0 p-0"> <label for="loc">Location</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="location" class="form-control" id="loc" placeholder=""></div>
-                                            </div>
-                    
-                                            <div class="row container-fluid  p-2">
-                                                <div class="col-sm-6 m-0 p-0"> <label for="gender">Gender</div>
-                                                <div class="col-sm-6 m-0 p-0">
-                                                    <select name="gender" id="gender" class="form-control">
-                                                        <option value="male">Male</option> 
-                                                        <option value="female">Female</option>
-                                                        <option value="other">Other</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                    
-                                            <div class="row container-fluid  p-2">
-                                                <div class="col-sm-6 m-0 p-0"> <label for="dob">Date of birth</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="dob" class="form-control" id="dob" placeholder=""></div>
-                                            </div>
-                    
-                                            <div class="row container-fluid  p-2">
-                                                <div class="col-sm-6 m-0 p-0"> <label for="blood">Blood Group</div>
-                                                <div class="col-sm-6 m-0 p-0">
-                                                    <select name="bld_grp" id="blood" class="form-control">
-                                                        <option value="A+ve">A+ve</option> 
-                                                        <option value="B+ve">B+ve</option> 
-                                                        <option value="O+ve">O+ve</option> 
-                                                        <option value="AB+ve">AB+ve</option>
-                                                        <option value="A-ve">A-ve</option>
-                                                        <option value="B-ve">B-ve</option>   
-                                                        <option value="AB-ve">AB-ve</option> 
-                                                        <option value="O-ve">O-ve</option> 
-                                                        
-                                                    </select>
-                                                </div>
-                                            </div>
-                    
-                                            <div class="row container-fluid  p-2">
-                                                <div class="col-sm-6 m-0 p-0"> <label for="prnts">Father's /Mother's Name</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="father_mother" class="form-control" id="prnts" placeholder=""></div>
-                                            </div>
-                    
-                                            <div class="row container-fluid  p-2">
-                                                <div class="col-sm-6 m-0 p-0"> <label for="spouse">Spouse's Name</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="spouse" class="form-control" id="spouse" placeholder=""></div>
-                                            </div>
-                    
-                                            <div class="row container-fluid  p-2">
-                                                <div class="col-sm-6 m-0 p-0"> <label for="adrs">Address</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><textarea type="text" name="address" rows="4" class="form-control" id="adrs" placeholder=""></textarea></div>
-                                            </div>
-                    
-                                            <div class="row container-fluid  p-2">
-                                                <div class="col-sm-6 m-0 p-0"> <label for="phno">Phone Number</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="phn" class="form-control" id="phno" placeholder=""></div>
-                                            </div>
-                                            <div class="row container-fluid  p-2">
-                                                <div class="col-sm-6 m-0 p-0"> <label for="email">Email</label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="Email" name="email" class="form-control" id="email" placeholder=""></div>
-                                            </div>
-            
-                                        </div>
-                                    
-                                    
-                                    <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
-                                            <h5 class="text-center"><u> Statutary details </u></h5>
-
-                                            <div class="row container-fluid  p-2">
-                                                <div class="col-sm-6 m-0 p-0"> <label for="bank">Provide bank details</label></div>
-                                                <div class="col-sm-6 m-0 p-0">
-                                                    <select  onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" 
-                                                    name="bank" id="bank_id" class="form-control" onchange="getBank()">
-                                                        <option value="No">No</option> 
-                                                        <option value="/bank">Yes</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                
-                                        <hr>
     
-                                        <div class="row container-fluid  p-2">
-                                            <div class="col-sm-6 m-0 p-0"> <label for="intax">Income Tax Number</label></div>
-                                            <div class="col-sm-6 m-0 p-0"><input type="text" name="incometax" class="form-control" id="intax" placeholder=""></div>
-                                        </div>
-                                        <div class="row container-fluid  p-2">
-                                            <div class="col-sm-6 m-0 p-0"> <label for="aadhar">Aadhar Number</label></div>
-                                            <div class="col-sm-6 m-0 p-0"><input type="text" name="adhar" class="form-control" id="aadhar" placeholder=""></div>
-                                        </div>
-                
-                                        <div class="row container-fluid  p-2">
-                                            <div class="col-sm-6 m-0 p-0"> <label for="uan">Universal Account Number(UAN)</label></div>
-                                            <div class="col-sm-6 m-0 p-0"><input type="text" name="uan" class="form-control" id="uan" placeholder=""></div>
-                                        </div>
-                
-                                        <div class="row container-fluid  p-2">
-                                            <div class="col-sm-6 m-0 p-0"> <label for="pfn">PF Account Number(PFN)</label></div>
-                                            <div class="col-sm-6 m-0 p-0"><input type="text" name="pf" class="form-control" id="pfn" placeholder=""></div>
-                                        </div>
-                
-                                        <div class="row container-fluid  p-2">
-                                            <div class="col-sm-6 m-0 p-0"> <label for="prn">PR Account Number(PRAN)</label></div>
-                                            <div class="col-sm-6 m-0 p-0"><input type="text" name="pr" class="form-control" id="prn" placeholder=""></div>
-                                        </div>
-                
-                                        <div class="row container-fluid  p-2">
-                                            <div class="col-sm-6 m-0 p-0"> <label for="esi">ESI Number(ESIN)</label></div>
-                                            <div class="col-sm-6 m-0 p-0"><input type="text" name="esi" class="form-control" id="esi" placeholder=""></div>
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                </div>
-                        </div>
-                        
-                        <div class="flexy w-100 py-4"><button class="btn btn-info w-25" style="margin-left:5% ;">Create</button></div>
-                    
-                    </form>
-                    
-                    </div>
-                    
-                    
-                
+    </style>
+    
+    <div class="m-0">
+        <h6  class="bg-info text-light p-2 m-0 text-left">Employee Creation</h6>
+
+            <form id="" action="employee_creation" method="post" class="p-5" style="background-color:rgba(0,0,0,.4);">
+                {% csrf_token %}
+
+
+            <div class="row container-fluid  p-2 m-0">
+                <div class="col-sm-2 m-0 p-0"> <label for="a">Name</label></div>
+                <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" placeholder="" name="name" autocomplete="off"
+                    onblur="passvalues()"></div>
+                <div class="col-sm-7 m-0 p-0"></div>
+            </div>
+
             
+            <div class="row container-fluid  p-2 m-0">
+                <div class="col-sm-2 m-0 p-0"> <label for="b">Alias</label></div>
+                <div class="col-sm-3 m-0 p-0"> 
+                <input type="text" class="form-control" id="b" placeholder="" name="alias" autocomplete="off"></div>
+                <div class="col-sm-7 m-0 p-0"></div>
+            </div>
+
+            <div class="row container-fluid  p-2 m-0">
+                <div class="col-sm-2 m-0 p-0"> <label for="Under">Under</label></div>
+                <div class="col-sm-3 m-0 p-0"> 
+                <input type="text" class="form-control" id="primary-text" onfocus="showList()" autocomplete="off" placeholder="" value="Primary"  name="under_name"></div>
+                <div class="col-sm-7 m-0 p-0"></div>
+            </div>
+
+            <div class="row container-fluid  p-2 m-0">
+                <div class="col-sm-2 m-0 p-0"> <label for="date">Date of joining</label></div>
+                <div class="col-sm-3 m-0 p-0"><input type="date" class="form-control" id="date" placeholder="" name="doj"></div>
+                <div class="col-sm-7 m-0 p-0"></div>
+            </div>
+            <div class="row container-fluid  p-2 m-0">
+                <div class="col-sm-2 m-0 p-0"> <label for="salary">Define salary details</label></div>
+                <div class="col-sm-3 m-0 p-0">
+                    <select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" 
+                     name="salary" id="salary" class="form-control">
+                        <option value="No">No</option> 
+                        <option value="/salary_details">Yes</option>
+                    </select> <br><br>
+                    <div class="col-sm-7 m-0 p-0"></div>
+                </div>
+            </div>
+
+
+
+            <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
+                <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                    <h6 class="text-center"><u> <b> GST Registration Details </b> </u></h6> <br>
+                    
+                    <div class="row container-fluid  p-2" id="e">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Employee Number</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                    </div>
+                    <div class="row container-fluid  p-2" id="a_t">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Designation</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Function</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" value="01-12-2022" class="form-control"></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">Location</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Gender</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="Activate" id="e" class="form-control">
+                                <option value="">--Select--</option>
+                                <option value="">Male</option> 
+                                <option value="">Female</option>
+                                <option value="">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">Date of Birth</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="date" class="form-control" id="c" placeholder=""></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">Blood Group</label></div>
+                        <div class="col-sm-6 m-0 p-0"><select name="bld_grp" id="blood" class="form-control">
+                            <option value="">--Select--</option> 
+                            <option value="A+ve">A+ve</option> 
+                            <option value="B+ve">B+ve</option> 
+                            <option value="O+ve">O+ve</option> 
+                            <option value="AB+ve">AB+ve</option>
+                            <option value="A-ve">A-ve</option>
+                            <option value="B-ve">B-ve</option>   
+                            <option value="AB-ve">AB-ve</option> 
+                            <option value="O-ve">O-ve</option> 
+                            
+                        </select></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">Fathers Name</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">Spouse Name</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">Address</label></div>
+                        <div class="col-sm-6 m-0 p-0"><textarea name="" id="" class="form-control"  rows="4"></textarea></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">Phone Number</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">Email</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                    </div><br>
+                </div>
+            
+            <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                <h5 class="text-center"> <u> <b> Statutary Details </b></u></h5>
+                <div class="row container-fluid  p-0">
+                    <div class="col-sm-6 m-0 p-0"></div>
+                    <div class="col-sm-6 m-0 p-0"></div>
+                </div>
+                <div class="row container-fluid  p-2">
+                    <div class="col-sm-6 m-0 p-0"> <label for="e">Provide Bank Details</label></div>
+                    <div class="col-sm-6 m-0 p-0"><select  onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" 
+                        name="bank" id="bank_id" class="form-control" onchange="getBank()">
+                            <option value="No">No</option> 
+                            <option value="/bank">Yes</option>
+                        </select></div>
                 </div>
 
-                <!-- list Creation -->
+                <hr>
+                <div class="row container-fluid  p-2">
+                    <div class="col-sm-6 m-0 p-0"> <label for="e">Income Tax Number</label></div>
+                    <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                </div><br>
+                <div class="row container-fluid  p-2">
+                    <div class="col-sm-6 m-0 p-0"> <label for="e">Adhar Number</label></div>
+                    <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                </div><br>
+                <div class="row container-fluid  p-2">
+                    <div class="col-sm-6 m-0 p-0"> <label for="e">Universal Account Number(UAN)</label></div>
+                    <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                </div><br>
+                <div class="row container-fluid  p-2">
+                    <div class="col-sm-6 m-0 p-0"> <label for="e">PF Account NUmber(PFN)</label></div>
+                    <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                </div><br>
+                <div class="row container-fluid  p-2">
+                    <div class="col-sm-6 m-0 p-0"> <label for="e">PR Account Number(PRAN)</label></div>
+                    <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                </div>
+                <div class="row container-fluid  p-2">
+                    <div class="col-sm-6 m-0 p-0"> <label for="e">ESI Number(ESIN)</label></div>
+                    <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                </div><br><br>
+                
 
- <div class="form-popup" id="list-div" >
-  
-    <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of Employee Groups</h6>
-<hr >
-<div>
-    <table >
-    <tr >
-        <td>
-          <a href="emloyee_group_secondary"><button
-                type="submit"
-                style="color: black;margin-left: 310%; width: 10%"
-                class="custom-select-md form-control"
-              >
-                create
-              </button></a>
-        </td>
-    </tr>
+            </div>
+        </div>
+                
+            <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>     
+                
+           
+        </form>
 
-    <tr>
-      <td>    
-
-        {% for l in emp %}
-        <div onclick="hideList('{{l.name}}')" style="color: black;" >{{l.name}}</div>
-        {% endfor %}
-      </td>
-    </tr>  
+    </div>  
     
-    </table>
-</div>
-
-
- </div>
-
-                
-
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-                
-                <script>
-                   
-                      
-                    function passvalues()
-                    {
-                        var name=document.getElementById("a").value;
-                        //console.log(name);
-                        localStorage.setItem("name", name);
-                        var a=localStorage.getItem("name");
-                        //console.log(a);
-                    }
-                    function showList() {
-                        document.getElementById("list-div").style.visibility = "visible";
-                    }
-                    function hideList(valueDIv) {
-                        document.getElementById("primary-text").value=valueDIv;
-                        document.getElementById("list-div").style.visibility = "hidden";
-                    }
-
-                </script>
-
-
-
-                
-
+    
+    <div class="form-popup" id="list-div" >
+  
+        <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of Employee Groups</h6>
+    <hr >
+    <div>
+        <table >
+        <tr >
+            <td>
+              <a href="emloyee_group_secondary"><button
+                    type="submit"
+                    style="color: black;margin-left: 310%; width: 10%"
+                    class="custom-select-md form-control"
+                  >
+                    create
+                  </button></a>
+            </td>
+        </tr>
+    
+        <tr>
+          <td>    
+    
+            {% for l in emp %}
+            <div onclick="hideList('{{l.name}}')" style="color: black;" >{{l.name}}</div>
+            {% endfor %}
+          </td>
+        </tr>  
+        
+        </table>
+    </div>
+    
+    
+     </div>
+    
+                    
+    
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                    
+                    <script>
+                       
+                          
+                        function passvalues()
+                        {
+                            var name=document.getElementById("a").value;
+                            //console.log(name);
+                            localStorage.setItem("name", name);
+                            var a=localStorage.getItem("name");
+                            //console.log(a);
+                        }
+                        function showList() {
+                            document.getElementById("list-div").style.visibility = "visible";
+                        }
+                        function hideList(valueDIv) {
+                            document.getElementById("primary-text").value=valueDIv;
+                            document.getElementById("list-div").style.visibility = "hidden";
+                        }
+    
+                    </script>
 {% endblock %}

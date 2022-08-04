@@ -1,72 +1,49 @@
 {% extends 'base.html' %}
-{% block body %}
+    {% block body %}
+    {% load static %}
+    <style>
+      
+    
+    </style>
+    <div style="margin-left:20% ;margin-top: 10%;">
+    <div class="m-0" style="width: 70%;">
+        <h6  class="bg-info text-light p-2 m-0 text-left">PAN/CIN Details</h6>
 
-<style>
-    .close {
-        position: absolute;
-        top: 3px;
-        right: 8px;
-        font-size: 25px;
-        color: rgb(255, 255, 255);
-        transform: rotate(45deg);
-        cursor: pointer;
-        text-decoration: none;
-    }
-    .flexy{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+            <form id="" action="stock_category_secondary" method="post" class="p-5" style="background-color:rgba(0,0,0,.4);">
+                {% csrf_token %}
+
+
+            <div class="row container-fluid  p-2 m-0">
+                <div class="col-sm-4 m-0 p-0"> <label for="name">PAN/Income tax no: :</label></div>
+                <div class="col-sm-8 m-0 p-0"><input   type="text" class="custom-select-md form-control" id="a" 
+                 name="pan" autocomplete="off" style="width: 50%;margin-left: 20%;" ></div>
+                
+            </div>
+
+            
+            <div class="row container-fluid  p-2 m-0">
+                <div class="col-sm-4 m-0 p-0"> <label for="alia">Corporate Identity No(CIN) :</label></div>
+                <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="cin"
+                    style="width: 50%;margin-left: 20%;" id="alias" autocomplete="off"></div> 
+            </div>
+
+
+           
 
   
 
+            <div class="enter w-100 py-4" ><button class="btn btn-info w-15">CREATE</button></div>   
 
-</style>
-<div style="width: 110%;margin-left: -4%;margin-top: 15%;">
-<div class="row container-fluid p-0 " >
-    <div class="col-sm-3 m-0 p-0"></div>
-    <div class="col-sm-6 m-0 p-0" style=" background-color:rgba(0,0,0,0.2);">
-        <a href="javascript:history.go(-1);" class="close">+</a>
-    <h6  class="bg-info text-light p-2">PAN/CIN Details</h6>
-    
-
-<form id="" action="pan_cin" method="post" class="p-5">
-        {% csrf_token %}
-   
-        <div class="">
-            <div id="pan" class="row container-fluid  p-2 m-0">
-                <div class="col-sm-6 m-0 p-0"> <label for="b">PAN/Income tax no:</label></div>
-                <div class="col-sm-6 m-0 p-0"> 
-                <input type="text" name="pan" class="form-control"  placeholder=""></div>
-                
-            </div>
-
-            <div id="cin" class="row container-fluid   p-2 m-0">
-                <div class="col-sm-6 m-0 p-0"> <label for="c">Corporate Identity No(CIN):</label></div>
-                <div class="col-sm-6 m-0 p-0"> 
-                <input type="text" name="cin" class="form-control"  placeholder=""></div>
-                
-            </div>
             
         </div>
+                
+    </div>
+                
+           
+        </form>
 
-                    
-
-                    <div><input type="submit" style="margin-left: 50%;margin-top: 20px;width: 25%;" value="create" class="btn btn-info"></div>
-
-                    <!-- <div class="flexy w-100 py-4"><button id="cbtn" type="button" class="btn btn-info w-50">Create</button></div> -->
+    </div>  
     
-</form>
-
-</div>
-</div>
-</div>
-
-
-<!-- list Creation -->
-
- 
-
-
-
+    
+    
 {% endblock %}

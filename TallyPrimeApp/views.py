@@ -1,7 +1,9 @@
 
+from configparser import LegacyInterpolation
+from unicodedata import name
 from django.shortcuts import render,redirect
 
-from TallyPrimeApp.models import CreateEmployeeGrp, CreateGodown, CreateStockCateg, CreateStockGrp, UnitCrt, Price_level, attendance_crt, bank_crt,  employee_crt, pancin, payhead_crt, salary_crt
+from TallyPrimeApp.models import CreateEmployeeGrp, CreateGodown, CreateStockCateg, CreateStockGrp, Price_level_crt, UnitCrt, Price_level, allocate_stock, attendance_crt, bank_crt,  employee_crt, pancin, payhead_crt, payroll_crt, salary_crt, stock_item_crt
 
 
 # Create your views here.
@@ -62,7 +64,28 @@ def stock_category_secondary(request):
     
 
 def stock_items(request):
-    return render(request,'stock_items.html')
+    cat=CreateStockCateg.objects.all()
+    grp=CreateStockGrp.objects.all()
+    unt=UnitCrt.objects.all()
+    if request.method=='POST':
+        name=request.POST['name']
+        alias=request.POST['alias']
+        under=request.POST['under']
+        category=request.POST['category']
+        units=request.POST['units']
+        batches=request.POST['batches']
+        manufacturing_date=request.POST['manufacturing_date']
+        expiry_dates=request.POST['expiry_dates']
+        rate_of_duty=request.POST['rate_of_duty']
+        quantity=request.POST['quantity']
+        rate=request.POST['rate']
+        per=request.POST['per']
+        value=request.POST['value']
+        crt=stock_item_crt(name=name,alias=alias,under=under,category=category,units=units,batches=batches,
+                           manufacturing_date=manufacturing_date,expiry_dates=expiry_dates,
+                           rate_of_duty=rate_of_duty,quantity=quantity,rate=rate,per=per,value=value)
+        crt.save()
+    return render(request,'stock_items1.html',{'cat':cat,'grp':grp,'unt':unt})
 
 
 def unit_creation(request):
@@ -78,7 +101,7 @@ def unit_creation(request):
         second_unit=request.POST['second_unit']
         crt=UnitCrt(type=type,symbol=symbol,formal_name=formal_name,uqc=uqc,decimal=decimal,first_unit=first_unit,conversion=conversion,second_unit=second_unit)
         crt.save()
-    return render(request,'unit.html',{'unit':unit})
+    return render(request,'unit1.html',{'unit':unit})
 
 
 def uqc(request):
@@ -190,24 +213,17 @@ def employee_creation(request):
                          function_name=function_name,location=location,gender=gender,dob=dob,bld_grp=bld_grp,father_mother=father_mother,
                          spouse=spouse,address=address,phn=phn,email=email,bank=bank,incometax=incometax,adhar=adhar,uan=uan,pf=pf,pr=pr,esi=esi)
         crt.save()
-        
-        request.session["name"]=name
-     
-        
-        
-                
+        request.session["name"]=name            
     return render(request,'employee_creation.html',{'emp':emp})
     
-
-
 def price_levels(request):
     price=Price_level.objects.all()
     if request.method=="POST":
         number=request.POST['number']
-        crt=Price_level(number=number)
+        crt=Price_level_crt(number=number)
         crt.save()
         return redirect('price_levels')
-    return render(request,'price_levels.html',{"price":price})
+    return render(request,'price_levels1.html',{"price":price})
 
 def pan_cin(request):
     pc=pancin.objects.all()
@@ -279,6 +295,28 @@ def bank(request):
 
 
 def payroll(request):
+    if request.method=='POST':
+        name=request.POST['name']
+        allias=request.POST['allias']
+        voucher_type=request.POST['voucher_type']
+        abbreviation=request.POST['abbreviation']
+        activate_voucher=request.POST['activate_voucher']
+        voucher_numbering_method=request.POST['voucher_numbering_method']
+        effective_dates=request.POST['effective_dates']
+        zero_val_transactions=request.POST['zero_val_transactions']
+        optional_voucher=request.POST['optional_voucher']
+        narration_voucher=request.POST['narration_voucher']
+        ledger_narration=request.POST['ledger_narration']
+        print_voucher=request.POST['print_voucher']
+        classs=request.POST['classs']
+        crt=payroll_crt(name=name,allias=allias,voucher_type=voucher_type,abbreviation=abbreviation,activate_voucher=activate_voucher,
+                        voucher_numbering_method=voucher_numbering_method,effective_dates=effective_dates,
+                        zero_val_transactions=zero_val_transactions,optional_voucher=optional_voucher,
+                        narration_voucher=narration_voucher,ledger_narration=ledger_narration,
+                        print_voucher=print_voucher,classs=classs)
+        crt.save()
+        
+        
     return render(request,'payroll_voucher_type.html')
 
 def attendance(request):
@@ -314,16 +352,29 @@ def salary_details(request):
         name=request.POST['name']
         alias=request.POST['alias']
         date=request.POST['date']
-        name=request.POSt['pay_head_name']
+        pay_head_name=request.POST['pay_head_name']
         rate=request.POST['rate']
         per=request.POST['per']
-        pay_head_type=request.POSt['pay_head_type']
+        pay_head_type=request.POST['pay_head_type']
         calculation_type=request.POST['calculation_type']
-        crt=salary_crt(name=name,alias=alias,date=date,pay_head_type=pay_head_type,rate=rate,per=per,calculation_type=calculation_type)
+        crt=salary_crt(name=name,alias=alias,date=date,pay_head_name=pay_head_name,pay_head_type=pay_head_type,rate=rate,per=per,calculation_type=calculation_type)
         crt.save()
     return render(request,'salary_details.html',{'pay':pay})
 
 def stock_item_allocations(request):
-    return render(request,'allocation_stock_item.html')
-
+    gd=CreateGodown.objects.all()
+    if request.method=="POST":
+        allocate=request.POST['allocate']
+        for_allocate=request.POST['for_allocate']
+        godown=request.POST['godown']
+        quantity=request.POST['quantity']
+        rate=request.POST['rate']
+        per=request.POST['per']
+        amount=request.POST['amount']
+        crt=allocate_stock(allocate=allocate,for_allocate=for_allocate,godown=godown,
+                           quantity=quantity,rate=rate,per=per,amount=amount)
+        crt.save()
+        return redirect("stock_items")
+    return render(request,'allocation_stock_item.html',{'gd':gd})
+    
 

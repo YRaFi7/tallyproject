@@ -20,14 +20,13 @@
 
 </style>
 <div style="width: 180%;margin-top: 15%;margin-left: -40%;">
-<div class="row container-fluid p-0 " >
+<div class="row container-fluid p-5" >
     <div class="col-sm-3 m-0 p-0"></div>
     <div class="col-sm-6 m-0 p-0" style=" background-color:rgba(0,0,0,0.2);">
-        <a href="javascript:history.go(-1);" class="close">+</a>
     <h6  class="bg-info text-light p-2">Payroll Voucher Type Creation</h6>
     
 
-<form id="" action="stock_group" method="post" class="p-5">
+<form id="" action="payroll" method="post" class="p-5">
         {% csrf_token %}
    
                     <div class="row container-fluid  p-2 m-0">
@@ -39,7 +38,7 @@
 
                     <div class="row container-fluid  p-2 m-0">
                         <div class="col-sm-4 m-0 p-0"> <label for="alia">(Alias) :</label></div>
-                        <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="alias"
+                        <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="allias"
                             style="width: 40%;margin-left: -20%;" id="alias" 
                             placeholder="" autocomplete="off"></div> 
                     </div>
@@ -67,7 +66,7 @@
 
                             <div class="row container-fluid  p-2 m-0">
                                 <div class="col-sm-4 m-0 p-0"> <label for="v_type">Activate This Voucher Type </label></div>
-                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="abbr"  name="voucher_type" id="" class="custom-select-md form-control">
+                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="abbr"  name="activate_voucher" id="" class="custom-select-md form-control">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
                                 </select></div> 
@@ -75,7 +74,7 @@
 
                             <div class="row container-fluid  p-2 m-0">
                                 <div class="col-sm-4 m-0 p-0"> <label for="voucher">Method of Voucher numbering </label></div>
-                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" name="voucher_numbering" id="voucher" class="form-control">
+                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" name="voucher_numbering_method" id="voucher" class="form-control">
                                     <option value="">--select--</option> 
                                     <option value="Automatic">Automatic</option> 
                                     <option value="Manual_override">Automatic(Manual Override)</option>
@@ -87,7 +86,7 @@
 
                             <div class="row container-fluid  p-2 m-0">
                                 <div class="col-sm-4 m-0 p-0"> <label for="v_type">Use effective dates for vouchers </label></div>
-                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="effective"  name="use_effective_dates" id="" class="custom-select-md form-control">
+                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="effective"  name="effective_dates" id="" class="custom-select-md form-control">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
                                 </select></div> 
@@ -95,7 +94,7 @@
 
                             <div class="row container-fluid  p-2 m-0">
                                 <div class="col-sm-4 m-0 p-0"> <label for="v_type">Allow zero valued transactions </label></div>
-                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="transactins"  name="zero_transactions" id="" class="custom-select-md form-control">
+                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="transactins"  name="zero_val_transactions" id="" class="custom-select-md form-control">
                                     
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
@@ -111,7 +110,7 @@
                             </div>
                             <div class="row container-fluid  p-2 m-0">
                                 <div class="col-sm-4 m-0 p-0"> <label for="">Allow Narration in voucher </label></div>
-                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="narrate"  name="narration" id="" class="custom-select-md form-control">
+                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="narrate"  name="narration_voucher" id="" class="custom-select-md form-control">
                                     
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
@@ -137,7 +136,7 @@
                             <div class="row container-fluid  p-2">
                                 <div class="col-sm-6 m-0 p-0"> <label for="bank">Print voucher after saving</label></div>
                                 <div class="col-sm-6 m-0 p-0">
-                                    <select style="width: 50%;margin-left: 20%;" name="print" id="voucher" class="form-control">
+                                    <select style="width: 50%;margin-left: 20%;" name="print_voucher" id="voucher" class="form-control">
                                         <option value="No">No</option> 
                                         <option value="Yes">Yes</option>
                                     </select>
@@ -151,8 +150,8 @@
 
                             <div class="row container-fluid  p-2">
                                 <div class="col-sm-6 m-0 p-0"> <label for="bank">Name of Class</label></div>
-                                <div class="col-sm-6 m-0 p-0"><input class="custom-select-md form-control" type="text" name="abbreviation"
-                                    style="width: 50%;margin-left: 20%;" id="abbr" 
+                                <div class="col-sm-6 m-0 p-0"><input class="custom-select-md form-control" type="text" name="classs"
+                                    style="width: 50%;margin-left: 20%;" id="classs" 
                                     placeholder="" autocomplete="off">
                                 </div>
                             </div>
