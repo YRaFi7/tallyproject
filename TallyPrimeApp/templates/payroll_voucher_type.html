@@ -26,7 +26,7 @@
     <h6  class="bg-info text-light p-2">Payroll Voucher Type Creation</h6>
     
 
-<form id="" action="payroll" method="post" class="p-5">
+<form name="myForm" id="" action="payroll" onsubmit="validateForm()" method="post" class="p-5">
         {% csrf_token %}
    
                     <div class="row container-fluid  p-2 m-0">
@@ -49,7 +49,7 @@
 
                             <div class="row container-fluid  p-2 m-0">
                                 <div class="col-sm-4 m-0 p-0"> <label for="voucher">Select Type of Voucher </label></div>
-                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" name="voucher_type" id="voucher" class="form-control">
+                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" name="voucher_type" id="voucher" class="form-control" onkeyup="copy()">
                                     <option value="">--select--</option> 
                                     <option value="Attendance">Attendance</option> 
                                     <option value="Payment">Payment</option>
@@ -92,22 +92,8 @@
                                 </select></div> 
                             </div>
 
-                            <div class="row container-fluid  p-2 m-0">
-                                <div class="col-sm-4 m-0 p-0"> <label for="v_type">Allow zero valued transactions </label></div>
-                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="transactins"  name="zero_val_transactions" id="" class="custom-select-md form-control">
-                                    
-                                    <option value="No">No</option>
-                                    <option value="Yes">Yes</option>
-                                </select></div> 
-                            </div>
 
-                            <div class="row container-fluid  p-2 m-0">
-                                <div class="col-sm-4 m-0 p-0"> <label for="">Make this voucher type as optional by default </label></div>
-                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="optional"  name="optional_voucher" id="" class="custom-select-md form-control">
-                                    <option value="No">No</option>
-                                    <option value="Yes">Yes</option>
-                                </select></div> 
-                            </div>
+                            
                             <div class="row container-fluid  p-2 m-0">
                                 <div class="col-sm-4 m-0 p-0"> <label for="">Allow Narration in voucher </label></div>
                                 <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="narrate"  name="narration_voucher" id="" class="custom-select-md form-control">
@@ -117,13 +103,6 @@
                                 </select></div> 
                             </div>
 
-                            <div class="row container-fluid  p-2 m-0">
-                                <div class="col-sm-4 m-0 p-0"> <label for="">Provide narration for each ledger in avoucher </label></div>
-                                <div class="col-sm-8 m-0 p-0"><select style="width: 50%;margin-left: 20%;" id="ledger_narrations"  name="ledger_narration" id="" class="custom-select-md form-control"> 
-                                    <option value="No">No</option>
-                                    <option value="Yes">Yes</option>
-                                </select></div> 
-                            </div>
 
 
 
@@ -136,7 +115,7 @@
                             <div class="row container-fluid  p-2">
                                 <div class="col-sm-6 m-0 p-0"> <label for="bank">Print voucher after saving</label></div>
                                 <div class="col-sm-6 m-0 p-0">
-                                    <select style="width: 50%;margin-left: 20%;" name="print_voucher" id="voucher" class="form-control">
+                                    <select style="width: 50%;margin-left: 20%;" name="print_voucher" id="save_voucher" class="form-control">
                                         <option value="No">No</option> 
                                         <option value="Yes">Yes</option>
                                     </select>
@@ -175,7 +154,27 @@
 </div>
 
 
- 
+ <script>
+
+function copy(){
+        var n1=document.getElementById("voucher");
+        var n2=document.getElementById("abbr")
+        n2.value=n1.value;
+
+    }
+function validateForm(){
+
+    var x=document.forms["myForm"]["name"].value;
+    if (x==null || x=="")
+    {
+    alert("Name must be filled out");
+    return false;
+    }
+}
+
+    
+
+ </script>
 
 
 

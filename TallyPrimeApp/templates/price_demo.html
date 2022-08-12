@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+    {% block body %}
+    {% load static %}
+    <style>
+      
+    
+    </style>
+    <div style="margin-left:31% ;margin-top: 10%;">
+    <div class="m-0" style="width: 50%;">
+        <h6  class="bg-info text-light p-2 m-0">Company Price Levels</h6>
+
+        <form id="form" action="price_levels" method="post" class="p-5" style="background-color:rgba(0,0,0,.4);">
+            {% csrf_token %}
+            
+            
+                <input   type="number" class="custom-select-md form-control" id="txtNumber" 
+                 name="number"  autocomplete="off" style="width: 70%;"> <br>
+
+                <input id="btnAdd" class="form-control" type="button" value="Add" style="width: 40%;"> <br>
+
+                <div id="divResult"></div>
+           
+
+
+        
+        </form>
+
+    </div>
+    </div>
+
+    <script>
+        let btnAdd =
+            document.getElementById("btnAdd");
+
+        let txtNumber =
+            document.getElementById("txtNumber");
+
+        let divResult =
+            document.getElementById("divResult"); 
+
+            function showListvalues(){
+            let listHTML="<ol>";
+                personList.forEach(
+                    function(nu){
+                        listHTML += "<li>" + nu + "<li>";
+                    }
+                );
+
+            listHTML+= "</ol>";
+                divResult.innerHTML=listHTML;
+        }
+
+
+        let personList = [];
+        btnAdd.onclick= addtoList;
+
+       
+
+        function addtoList(){
+            showListvalues()
+            personList.push(txtNumber.value);
+            
+        }
+
+        
+
+        // document.getElementById("txtNumber")
+        // .addEventListener("keyup",function(event){
+        //     event.preventDefault();
+        //     if (event.keyCode===13){
+        //         btnAdd.click();
+
+        //     }
+        // }
+        // );
+
+        
+    </script>
+    
+
+    
+{% endblock %}

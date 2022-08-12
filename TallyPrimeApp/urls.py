@@ -45,6 +45,12 @@ urlpatterns=[
     
     path('bank',views.bank,name='bank'),
     
+    
+    
+    
+    
+    
+    
     path('stock_item_allocations',views.stock_item_allocations,name='stock_item_allocations')
     
    

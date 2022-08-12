@@ -23,7 +23,7 @@
     <div class="m-0" style="width: 70%;">
         <h6  class="bg-info text-light p-2 m-0 text-left">Stock Group Creation</h6>
 
-            <form id="" action="stock_group" method="post" class="p-5" style="background-color:rgba(0,0,0,.4);">
+            <form name="myForm" id="" action="stock_group" method="post" class="p-5" onsubmit="return validateForm()" style="background-color:rgba(0,0,0,.4);">
                 {% csrf_token %}
 
 
@@ -114,6 +114,15 @@
                       document.getElementById("primary-text").value=valueDIv;
                       document.getElementById("list-div").style.visibility = "hidden";
                   }
-    
+
+                  function validateForm(){
+
+                        var x=document.forms["myForm"]["name"].value;
+                        if (x==null || x=="")
+                        {
+                        alert("Name must be filled out");
+                        return false;
+                        }
+                    }
                     </script>
 {% endblock %}

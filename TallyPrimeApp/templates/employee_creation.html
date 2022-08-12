@@ -23,10 +23,13 @@
     
     </style>
     
-    <div class="m-0">
+    <div>
+        <div style="margin-left:10% ;margin-top: 10%;">
+            <div  style="width: 90%;">
+
         <h6  class="bg-info text-light p-2 m-0 text-left">Employee Creation</h6>
 
-            <form id="" action="employee_creation" method="post" class="p-5" style="background-color:rgba(0,0,0,.4);">
+            <form name="myForm" id="" action="employee_creation" onsubmit="validateForm()" method="post" class="p-5" style="background-color:rgba(0,0,0,.4);">
                 {% csrf_token %}
 
 
@@ -41,7 +44,8 @@
             <div class="row container-fluid  p-2 m-0">
                 <div class="col-sm-2 m-0 p-0"> <label for="b">Alias</label></div>
                 <div class="col-sm-3 m-0 p-0"> 
-                <input type="text" class="form-control" id="b" placeholder="" name="alias" autocomplete="off"></div>
+                <input type="text" class="form-control" id="b" placeholder="" name="alias" autocomplete="off"
+                onblur="passvaluesAlias()"></div>
                 <div class="col-sm-7 m-0 p-0"></div>
             </div>
 
@@ -194,6 +198,9 @@
         </form>
 
     </div>  
+        </div>
+    </div>
+    
     
     
     <div class="form-popup" id="list-div" >
@@ -234,7 +241,15 @@
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                     
                     <script>
-                       
+                          localStorage.clear();
+
+                         document.getElementById("a").value = localStorage.getItem("name"); 
+
+                         localStorage.clear();
+
+                         document.getElementById("b").value = localStorage.getItem("alias");
+
+                         localStorage.clear();
                           
                         function passvalues()
                         {
@@ -244,6 +259,14 @@
                             var a=localStorage.getItem("name");
                             //console.log(a);
                         }
+
+                        function passvaluesAlias()
+                        {
+                            var name=document.getElementById("b").value;
+                            localStorage.setItem("alias",name);
+                            var b=localStorage.getItem("alias")
+                        }
+
                         function showList() {
                             document.getElementById("list-div").style.visibility = "visible";
                         }
@@ -251,6 +274,15 @@
                             document.getElementById("primary-text").value=valueDIv;
                             document.getElementById("list-div").style.visibility = "hidden";
                         }
-    
+                        function validateForm(){
+
+                            var x=document.forms["myForm"]["name"].value;
+                            if (x==null || x=="")
+                            {
+                            alert("Name must be filled out");
+                            return false;
+                            }
+                        }
+                                
                     </script>
 {% endblock %}

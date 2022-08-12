@@ -115,7 +115,6 @@ class salary_crt(models.Model):
     date=models.CharField(max_length=100,null=True)
     pay_head_name=models.CharField(max_length=100,null=True)
     rate=models.CharField(max_length=100,null=True)
-    per=models.CharField(max_length=100,null=True)
     pay_head_type=models.CharField(max_length=100,null=True)
     calculation_type=models.CharField(max_length=100,null=True)
     
@@ -127,10 +126,7 @@ class payroll_crt(models.Model):
     activate_voucher=models.CharField(max_length=100,null=True)
     voucher_numbering_method=models.CharField(max_length=100,null=True)
     effective_dates=models.CharField(max_length=100,null=True)
-    zero_val_transactions=models.CharField(max_length=100,null=True)
-    optional_voucher=models.CharField(max_length=100,null=True)
     narration_voucher=models.CharField(max_length=100,null=True)
-    ledger_narration=models.CharField(max_length=100,null=True)
     print_voucher=models.CharField(max_length=100,null=True)
     classs=models.CharField(max_length=100,null=True)
     
@@ -148,6 +144,7 @@ class stock_item_crt(models.Model):
     rate=models.CharField(max_length=100,null=True)
     per=models.CharField(max_length=100,null=True)
     value=models.CharField(max_length=100,null=True)
+    additional=models.CharField(max_length=100,null=True)
     
 class Price_level_crt(models.Model):
     number=models.CharField(max_length=100,null=True)

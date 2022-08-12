@@ -81,9 +81,10 @@ def stock_items(request):
         rate=request.POST['rate']
         per=request.POST['per']
         value=request.POST['value']
+        additional=request.POST['additional']
         crt=stock_item_crt(name=name,alias=alias,under=under,category=category,units=units,batches=batches,
                            manufacturing_date=manufacturing_date,expiry_dates=expiry_dates,
-                           rate_of_duty=rate_of_duty,quantity=quantity,rate=rate,per=per,value=value)
+                           rate_of_duty=rate_of_duty,quantity=quantity,rate=rate,per=per,value=value,additional=additional)
         crt.save()
     return render(request,'stock_items1.html',{'cat':cat,'grp':grp,'unt':unt})
 
@@ -217,13 +218,13 @@ def employee_creation(request):
     return render(request,'employee_creation.html',{'emp':emp})
     
 def price_levels(request):
-    price=Price_level.objects.all()
     if request.method=="POST":
         number=request.POST['number']
         crt=Price_level_crt(number=number)
         crt.save()
         return redirect('price_levels')
-    return render(request,'price_levels1.html',{"price":price})
+    price=Price_level_crt.objects.all()
+    return render(request,'price_levels.html',{"price":price})
 
 def pan_cin(request):
     pc=pancin.objects.all()
@@ -233,7 +234,6 @@ def pan_cin(request):
         crt=pancin(pan=pan,cin=cin)
         crt.save()
     return render(request,'pan_cin.html')
-
 
 
 # def show_emp(request):
@@ -275,6 +275,8 @@ def load(request):
     obj=payhead_crt.objects.get(name=did)
     return render(request,"load.html",{"obj":obj})
 
+
+
 def load_calculation(request):
     did=request.GET.get("id")
     obj=payhead_crt.objects.get(name=did)
@@ -282,7 +284,6 @@ def load_calculation(request):
 
 def bank(request):
     emp=CreateEmployeeGrp.objects.all()
-    a=request.session["name"]
     if request.method=='POST':
         accno=request.POST['accno']
         ifsc_Code=request.POST['ifsc_Code']
@@ -291,7 +292,7 @@ def bank(request):
         crt=bank_crt(accno=accno,ifsc_Code=ifsc_Code,bank_name=bank_name,branch=branch)
         crt.save
         return redirect('employee_creation')
-    return render(request,'bank_details.html',{'var':a,'emp':emp})
+    return render(request,'bank_details.html',{'emp':emp})
 
 
 def payroll(request):
@@ -303,16 +304,12 @@ def payroll(request):
         activate_voucher=request.POST['activate_voucher']
         voucher_numbering_method=request.POST['voucher_numbering_method']
         effective_dates=request.POST['effective_dates']
-        zero_val_transactions=request.POST['zero_val_transactions']
-        optional_voucher=request.POST['optional_voucher']
         narration_voucher=request.POST['narration_voucher']
-        ledger_narration=request.POST['ledger_narration']
         print_voucher=request.POST['print_voucher']
         classs=request.POST['classs']
         crt=payroll_crt(name=name,allias=allias,voucher_type=voucher_type,abbreviation=abbreviation,activate_voucher=activate_voucher,
                         voucher_numbering_method=voucher_numbering_method,effective_dates=effective_dates,
-                        zero_val_transactions=zero_val_transactions,optional_voucher=optional_voucher,
-                        narration_voucher=narration_voucher,ledger_narration=ledger_narration,
+                        narration_voucher=narration_voucher,
                         print_voucher=print_voucher,classs=classs)
         crt.save()
         
@@ -354,12 +351,11 @@ def salary_details(request):
         date=request.POST['date']
         pay_head_name=request.POST['pay_head_name']
         rate=request.POST['rate']
-        per=request.POST['per']
         pay_head_type=request.POST['pay_head_type']
         calculation_type=request.POST['calculation_type']
-        crt=salary_crt(name=name,alias=alias,date=date,pay_head_name=pay_head_name,pay_head_type=pay_head_type,rate=rate,per=per,calculation_type=calculation_type)
+        crt=salary_crt(name=name,alias=alias,date=date,pay_head_name=pay_head_name,pay_head_type=pay_head_type,rate=rate,calculation_type=calculation_type)
         crt.save()
-    return render(request,'salary_details.html',{'pay':pay})
+    return render(request,'demo.html',{'pay':pay})
 
 def stock_item_allocations(request):
     gd=CreateGodown.objects.all()
