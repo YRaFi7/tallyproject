@@ -1,7 +1,7 @@
 
 from configparser import LegacyInterpolation
 from unicodedata import name
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponseRedirect
 
 from TallyPrimeApp.models import CreateEmployeeGrp, CreateGodown, CreateStockCateg, CreateStockGrp, Price_level_crt, UnitCrt, Price_level, allocate_stock, attendance_crt, bank_crt,  employee_crt, pancin, payhead_crt, payroll_crt, salary_crt, stock_item_crt
 
@@ -184,6 +184,7 @@ def emloyee_group_secondary(request):
     
 
 def employee_creation(request):
+    grp=CreateEmployeeGrp.objects.all()
     emp=employee_crt.objects.all()
     if request.method=='POST':
         name=request.POST['name']
@@ -215,7 +216,7 @@ def employee_creation(request):
                          spouse=spouse,address=address,phn=phn,email=email,bank=bank,incometax=incometax,adhar=adhar,uan=uan,pf=pf,pr=pr,esi=esi)
         crt.save()
         request.session["name"]=name            
-    return render(request,'employee_creation.html',{'emp':emp})
+    return render(request,'employee_creation.html',{'emp':emp,'grp':grp})
     
 def price_levels(request):
     if request.method=="POST":
@@ -345,6 +346,7 @@ def attendance_seconday(request):
 
 def salary_details(request):
     pay=payhead_crt.objects.all()
+    sal=salary_crt.objects.all()
     if request.method=='POST':
         name=request.POST['name']
         alias=request.POST['alias']
@@ -355,7 +357,7 @@ def salary_details(request):
         calculation_type=request.POST['calculation_type']
         crt=salary_crt(name=name,alias=alias,date=date,pay_head_name=pay_head_name,pay_head_type=pay_head_type,rate=rate,calculation_type=calculation_type)
         crt.save()
-    return render(request,'demo.html',{'pay':pay})
+    return render(request,'salary_details.html',{'pay':pay,'sal':sal})
 
 def stock_item_allocations(request):
     gd=CreateGodown.objects.all()

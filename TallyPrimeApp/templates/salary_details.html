@@ -1,16 +1,8 @@
 {% extends 'base.html' %}
 {% block body %}
-    {% load static %}
-    <style>
-        .flexy{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    
-    
-    
-    .form-popup {
+<style>
+
+.form-popup {
                 visibility: hidden;       
                 position: fixed;
                 top: 230px;
@@ -21,89 +13,104 @@
                 width: 300px;
                 height: 200px;
             }
+
 </style>
-    <div class="m-3">
+
+<body>
+
+<div style="margin-top: 10%;">
+
+  <div class="m-3">
        
+    <h6 class="bg-info text-light m-0 p-2">Salary Details</h6>
 
-     
-        
-            <h6 class="bg-info text-light m-0 p-2">Salary Details</h6>
+    <form name="myForm" action="salary_details" method="post" onsubmit="return validateForm()" class="p-5" style="background-color:rgba(0,0,0,.4);">
+        {% csrf_token %}
 
-       
-       
-
-        <div style="overflow: scroll ;max-height: 70vh; width: 100%;background-color:rgba(0,0,0,0.4); ">
-            <Table class="w-100 table text-center" border="1">
-                <tr>
-                    <th style="width: 2%;" >Effective From</th>
-                    <th >Pay Head</th>
-                    <th >Rate</th>
-                    <th >Pay Head Type</th>
-                    <th >Calculation Type</th>
-    
-                </tr>
-                
-                <tr>
-                    <form action="salary_details" method="post">
-                        {% csrf_token %}
-                     
-                        <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="gname">Name :</label></div>
-                            <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="name"
-                                style="width: 30%;" id="loc" 
-                                placeholder="" autocomplete="off"/></div> 
-                        </div>
-                
-                        <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="alia">(Alias) :</label></div>
-                            <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="alias"
-                                style="width: 30%;" id="alia" 
-                                placeholder="" autocomplete="off"></div> 
-                        </div>
-                
-                   
-
-                  <td> <input type="date" class="custom-select-md form-control" name="date"></td>
-                  <td> <input type="text" class="custom-select-md form-control" name="pay_head_name" onfocus="showList()" id="primary-text" autocomplete="off"  ></td>
-                  <td> <input type="number" class="custom-select-md form-control" name="rate" autocomplete="off" ></td>
-                  <td> <input type="text" class="custom-select-md form-control" name="pay_head_type" id="payheaad_type" autocomplete="off"  ></td>
-                  <td> <input type="text" class="custom-select-md form-control" name="calculation_type" id="calculation_type" autocomplete="off"  ></td>
-                  <td> <button type="submit" class="btn btn-info">Enter</button></td> 
-             
-                </form>
-               
-                </tr>
-
-                <tr>
-                    <td> <input type="date" class="custom-select-md form-control" name="date"></td>
-                    <td> <input type="text" class="custom-select-md form-control" name="pay_head_name" onfocus="showList()" id="primary-text" autocomplete="off"  ></td>
-                    <td> <input type="number" class="custom-select-md form-control" name="rate" autocomplete="off" ></td>
-                    <td> <input type="text" class="custom-select-md form-control" name="pay_head_type" id="payheaad_type" autocomplete="off"  ></td>
-                    <td> <input type="text" class="custom-select-md form-control" name="calculation_type" id="calculation_type" autocomplete="off"  ></td>
-                    <td> <button type="submit" class="btn btn-info">Enter</button></td> 
-                </tr>
-
-                <tr>
-                    <td> <input type="date" class="custom-select-md form-control" name="date"></td>
-                    <td> <input type="text" class="custom-select-md form-control" name="pay_head_name" onfocus="showList()" id="primary-text" autocomplete="off"  ></td>
-                    <td> <input type="number" class="custom-select-md form-control" name="rate" autocomplete="off" ></td>
-                    <td> <input type="text" class="custom-select-md form-control" name="pay_head_type" id="payheaad_type" autocomplete="off"  ></td>
-                    <td> <input type="text" class="custom-select-md form-control" name="calculation_type" id="calculation_type" autocomplete="off"  ></td>
-                    <td> <button type="submit" class="btn btn-info">Enter</button></td> 
-                </tr>
-           
-      
-                
-                
-            </Table>
-
-        </div>
-   
- 
+    <div class="row container-fluid  p-2 m-0">
+        <div class="col-sm-2 m-0 p-0"> <label for="gname">Name :</label></div>
+        <div class="col-sm-3 m-0 p-0"><input class="custom-select-md form-control" type="text" name="name"
+            id="loc" 
+            placeholder="" autocomplete="off"/></div> 
     </div>
 
-    
-<!-- list Creation -->
+    <div class="row container-fluid  p-2 m-0">
+        <div class="col-sm-2 m-0 p-0"> <label for="alia">(Alias) :</label></div>
+        <div class="col-sm-3 m-0 p-0"><input class="custom-select-md form-control" type="text" name="alias"
+             id="alia" 
+            placeholder="" autocomplete="off"></div> 
+    </div>
+  
+     <div class="row container-fluid  p-2 m-0">
+     <div class="col-sm-2 m-0 p-0"> <label for="">Date</label></div>
+     <div class="col-sm-3 m-0 p-0"> 
+     <input type="date" class="custom-select-md form-control" name="date"> </div>
+     </div>
+
+     <div class="row container-fluid  p-2 m-0">
+        <div class="col-sm-2 m-0 p-0"><label for="">Payhead Name</label></div>
+        <div class="col-sm-3 m-0 p-0"> 
+        <input type="text" class="custom-select-md form-control" name="pay_head_name" onfocus="showList()" id="primary-text" autocomplete="off"  ></div>
+     </div>
+
+     <div class="row container-fluid  p-2 m-0">
+        <div class="col-sm-2 m-0 p-0"><label for="">Rate</label></div>
+            <div class="col-sm-3 m-0 p-0">
+     <input type="number" class="custom-select-md form-control" name="rate" autocomplete="off" ></div>
+     </div>
+
+     <div class="row container-fluid  p-2 m-0">
+        <div class="col-sm-2 m-0 p-0">
+     <label for="">Type</label></div>
+     <div class="col-sm-3 m-0 p-0">
+     <input type="text" class="custom-select-md form-control" name="pay_head_type" id="payheaad_type" autocomplete="off"  ></div>
+     </div>
+     
+     <div class="row container-fluid  p-2 m-0">
+        <div class="col-sm-2 m-0 p-0">
+     <label for="">Calculation</label></div>
+     <div class="col-sm-3 m-0 p-0">
+     <input type="text" class="custom-select-md form-control" name="calculation_type" id="calculation_type" autocomplete="off"  ></div>
+        </div>
+
+     <div><button type="submit" class="btn btn-info">Enter</button></div>
+
+     <hr>
+     
+    </form>
+     
+    <div style="overflow: scroll ;max-height: 70vh; width: 100%;background-color:rgba(0,0,0,0.4); ">
+      <Table class="w-100 table text-center" border="1">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">PAyhead NAme</th>
+            <th scope="col">Rate</th>
+            <th scope="col">Type</th>
+            <th scope="col">Calc</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in sal %}
+          <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.date}}</td>
+            <td>{{i.pay_head_name}}</td>
+            <td>{{i.rate}}</td>
+            <td>{{i.pay_head_type}}</td>
+            <td>{{i.calculation_type}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+</div>
+
+      <!-- list Creation -->
 
 <div class="form-popup" id="list-div" >
   
@@ -142,70 +149,82 @@
 
 
 
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+</body>
 
 
-    <script>
-         document.getElementById("loc").value = localStorage.getItem("name"); 
-
-         document.getElementById("alia").value = localStorage.getItem("alias"); 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
 
+<script>
 
-         function showList(){
-            document.getElementById('list-div').style.visibility="visible";
-         }
+function validateForm(){
 
-         function hideList(valueDIv) {
-            document.getElementById("primary-text").value=valueDIv;
-            document.getElementById("list-div").style.visibility = "hidden";
-            getDetails()
-            getDetail()
-        }
-        function getDetails()
-        {
-            var did=document.getElementById("primary-text").value;
-            console.log(did)
-            //alert(did)
-            $.ajax(
+var x=document.forms["myForm"]["name"].value;
+if (x==null || x=="")
+{
+alert("Name must be filled out");
+return false;
+}
+}
+
+     document.getElementById("loc").value = localStorage.getItem("name"); 
+
+     document.getElementById("alia").value = localStorage.getItem("alias"); 
+
+
+
+
+     function showList(){
+        document.getElementById('list-div').style.visibility="visible";
+     }
+
+     function hideList(valueDIv) {
+        document.getElementById("primary-text").value=valueDIv;
+        document.getElementById("list-div").style.visibility = "hidden";
+        getDetails()
+        getDetail()
+    }
+    function getDetails()
+    {
+        var did=document.getElementById("primary-text").value;
+        console.log(did)
+        //alert(did)
+        $.ajax(
 {
 
 url: "/load/",
 data:{
-         id: did
+     id: did
 },
 success: function( data ) 
 {
-    document.getElementById("payheaad_type").value=data;
-   
+document.getElementById("payheaad_type").value=data;
+
 }
 });
-        }
-        function getDetail()
-        {
-            var did=document.getElementById("primary-text").value;
-            console.log(did)
-            //alert(did)
-            $.ajax(
+    }
+    function getDetail()
+    {
+        var did=document.getElementById("primary-text").value;
+        console.log(did)
+        //alert(did)
+        $.ajax(
 {
 
 url: "/load_calculation/",
 data:{
-         id: did
+     id: did
 },
 success: function( data ) 
 {
-    //alert(data);
-    document.getElementById("calculation_type").value=data;
-   
+//alert(data);
+document.getElementById("calculation_type").value=data;
+
 }
 });
-        }
-    </script>
-    
-   
+    }
+
+</script>
 
 {% endblock %}

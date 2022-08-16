@@ -61,36 +61,24 @@
                                 placeholder="" autocomplete="off"></div> 
                         </div>
                 
-                   
+                
 
                   <td> <input type="date" class="custom-select-md form-control" name="date"></td>
                   <td> <input type="text" class="custom-select-md form-control" name="pay_head_name" onfocus="showList()" id="primary-text" autocomplete="off"  ></td>
                   <td> <input type="number" class="custom-select-md form-control" name="rate" autocomplete="off" ></td>
                   <td> <input type="text" class="custom-select-md form-control" name="pay_head_type" id="payheaad_type" autocomplete="off"  ></td>
                   <td> <input type="text" class="custom-select-md form-control" name="calculation_type" id="calculation_type" autocomplete="off"  ></td>
-                  <td> <button type="submit" class="btn btn-info">Enter</button></td> 
-             
-                </form>
                
                 </tr>
-
-                <tr>
-                    <td> <input type="date" class="custom-select-md form-control" name="date"></td>
-                    <td> <input type="text" class="custom-select-md form-control" name="pay_head_name" onfocus="showList2()" id="primary-text2" autocomplete="off"  ></td>
-                    <td> <input type="number" class="custom-select-md form-control" name="rate" autocomplete="off" ></td>
-                    <td> <input type="text" class="custom-select-md form-control" name="pay_head_type" id="payheaad_type" autocomplete="off"  ></td>
-                    <td> <input type="text" class="custom-select-md form-control" name="calculation_type" id="calculation_type" autocomplete="off"  ></td>
-                    <td> <button type="submit" class="btn btn-info">Enter</button></td> 
-                </tr>
-
-                
-           
-      
                 
                 
             </Table>
 
-        </div>
+             <button type="submit" class="btn btn-info">Submit</button>
+    
+        </form>
+        
+    </div>
    
  
     </div>
@@ -132,46 +120,6 @@
 
 
  </div>
-
-
- <!-- list2 -->
-
- <div class="form-popup" id="list-div2" >
-  
-    <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of Pay Heads</h6>
-<hr >
-<div>
-    <table >
-    <tr >
-        <td>
-            <a href="pay_head"> <button
-                type="submit"
-                style="color: black;margin-left: 310%; width: 20%"
-                class="custom-select-md form-control"
-              >
-                create
-              </button> </a>
-        </td>
-    </tr>
-
-    <tr>
-      <td>    
-
-        {% for l in pay %}
-        <div onclick="hideList2('{{l.name}}')" style="color: black;" >{{l.name}}</div>
-        {% endfor %}
-      </td>
-    </tr>  
-    
-    </table>
-</div>
-
-
-
-
- </div>
-
-
 
 
 
@@ -239,56 +187,6 @@ success: function( data )
 });
         }
 
-// 2nd table
-        function showList2(){
-            document.getElementById('list-div2').style.visibility="visible";
-         }
-
-         function hideList2(valueDIv) {
-            document.getElementById("primary-text2").value=valueDIv;
-            document.getElementById("list-div2").style.visibility = "hidden";
-            getDetails2()
-            getDetail2()
-        }
-        function getDetails2()
-        {
-            var did=document.getElementById("primary-text2").value;
-            console.log(did)
-            //alert(did)
-            $.ajax(
-{
-
-url: "/load2/",
-data:{
-         id: did
-},
-success: function( data ) 
-{
-    document.getElementById("payheaad_type2").value=data;
-   
-}
-});
-        }
-        function getDetail2()
-        {
-            var did=document.getElementById("primary-text2").value;
-            console.log(did)
-            //alert(did)
-            $.ajax(
-{
-
-url: "/load_calculation/",
-data:{
-         id: did
-},
-success: function( data ) 
-{
-    //alert(data);
-    document.getElementById("calculation_type2").value=data;
-   
-}
-});
-        }
 
 
     </script>
