@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
+{% load static %}
 
 <style>
 
@@ -16,6 +17,15 @@
         height: 200px;
       
       }
+      .flexy{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hide{
+        display: none;
+    }
     
 </style>
 
@@ -98,18 +108,25 @@
                                 </div>
                                 <div class="row container-fluid  p-2">
                                     <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Calculation type</label></div>
-                                    <div class="col-sm-6 m-0 p-0"><select name="calculation_type" id="ctype" class="form-control"  onchange="show()"
+                                    <div class="col-sm-6 m-0 p-0"><select name="calculation_type" id="ctype" class="form-control"  onchange="showCalc()"
                                         style="width: 50%;margin-left: 10%;">
                                     <option value="not_applicable">Not Applicable</option>
                                     <option value="on_attendance">On Attendance</option>
+                                    <option value="on_production">On Production</option>
                                     </select>
 
                                     </div>
                                 </div>
 
-                                <div class="row container-fluid  p-2 " id="attl" style="visibility: hidden;">
-                                    <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Attendance/Leave with Pay</label></div>
-                                    <div class="col-sm-6 m-0 p-0"><input type="text" name="" class="form-control" id="alp" placeholder=""onfocus="showList()"
+                                <div id="attl" class="row container-fluid hide  p-2 m-0">
+                                    <div class="col-sm-6 m-0 p-0" > <label for="attendanc" style="margin-left: 30px;">Attendance/Leave with Pay</label></div>
+                                    <div class="col-sm-6 m-0 p-0"><input type="text" name="attendance_type" class="form-control" id="alp" placeholder="" onfocus="showList()"
+                                        style="width: 50%;margin-left: 10%;"></div>
+                                </div>
+
+                                <div id="prd" class="row container-fluid hide  p-2 m-0">
+                                    <div class="col-sm-6 m-0 p-0" > <label for="prdtyp" style="margin-left: 30px;">Production Type</label></div>
+                                    <div class="col-sm-6 m-0 p-0"><input type="text" name="production_type" class="form-control" id="prdt" placeholder="" onfocus="showListProduction()"
                                         style="width: 50%;margin-left: 10%;"></div>
                                 </div>
 
@@ -137,12 +154,22 @@
 
  <div class="form-popup" id="list-div" >
   
-    <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of Groups</h6>
+    <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of Attendance Types</h6>
   <hr >
   <div>
     <table >
-    
-  
+        <tr >
+            <td>
+                  <a href="attendance_seconday"> <button
+                    type="submit"
+                    style="color: black;margin-left: 310%; width: 20%"
+                    class="custom-select-md form-control"
+                  >
+                    create
+                  </button></a>
+            </td>
+          </tr>
+          
     <tr>
       <td>    
   
@@ -157,6 +184,8 @@
   
   </div>
 
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
 
  <script>
     function validateForm(){
@@ -185,22 +214,28 @@
         document.getElementById("list-div").style.visibility = "hidden";
     }
 
-    function show(){
-        var status=document.getElementById("ctype");
-        
+    function showCalc(){
+        var status =document.getElementById('ctype');
         var c=status.value;
-        
+        console.log(c);
         if (c=='on_attendance'){
-         document.getElementById('attl').style.visibility="";
+            console.log(c);
+            document.getElementById('attl').style.display="flex";
+            document.getElementById('prd').style.display="none";
         }
-        else if(c=='not_applicable'){
-            document.getElementById('alp').style.display="none";
+
+        else if(c=='on_production'){
+            console.log(c);
+            document.getElementById('attl').style.display="none";
+            document.getElementById('prd').style.display="flex";
         }
-
-
-
-
+        else {
+            console.log(c);
+            document.getElementById('prd').style.display="none";
+            document.getElementById('attl').style.display="none";
+        }
     }
+
  </script>
 
 

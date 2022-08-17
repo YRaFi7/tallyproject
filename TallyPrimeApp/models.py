@@ -108,6 +108,8 @@ class payhead_crt(models.Model):
     pay_slip_name=models.CharField(max_length=100,null=True)
     currency_ledger=models.CharField(max_length=100,null=True)
     calculation_type=models.CharField(max_length=100,null=True)
+    attendance_type=models.CharField(max_length=100,null=True)
+    production_type=models.CharField(max_length=100,null=True)
     
 class salary_crt(models.Model):
     name=models.CharField(max_length=50,null=True)

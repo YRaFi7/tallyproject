@@ -267,7 +267,10 @@ def pay_head(request):
         pay_slip_name1=request.POST['pay_slip_name']
         currency_ledger=request.POST['currency_ledger']
         calculation_type=request.POST['calculation_type']
-        crt=payhead_crt(name=name,alias=alias,payhead_type=payhead_type,under_name=under_name,net_salary=net_salary,pay_slip_name=pay_slip_name1,currency_ledger=currency_ledger,calculation_type=calculation_type)
+        attendance_type=request.POST['attendance_type']
+        production_type=request.POST['production_type']
+        crt=payhead_crt(name=name,alias=alias,payhead_type=payhead_type,under_name=under_name,net_salary=net_salary,pay_slip_name=pay_slip_name1,currency_ledger=currency_ledger,calculation_type=calculation_type
+                        ,attendance_type=attendance_type,production_type=production_type)
         crt.save()
     return render(request,'pay_head.html',{'att':att})
 
