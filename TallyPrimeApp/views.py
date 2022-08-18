@@ -86,7 +86,7 @@ def stock_items(request):
                            manufacturing_date=manufacturing_date,expiry_dates=expiry_dates,
                            rate_of_duty=rate_of_duty,quantity=quantity,rate=rate,per=per,value=value,additional=additional)
         crt.save()
-    return render(request,'stock_items1.html',{'cat':cat,'grp':grp,'unt':unt})
+    return render(request,'stock_items.html',{'cat':cat,'grp':grp,'unt':unt})
 
 
 def unit_creation(request):
@@ -258,6 +258,7 @@ def pan_cin(request):
 
 def pay_head(request):
     att=attendance_crt.objects.all()
+    pay=payhead_crt.objects.all()
     if request.method=='POST':
         name=request.POST['name']
         alias=request.POST['alias']
@@ -272,7 +273,7 @@ def pay_head(request):
         crt=payhead_crt(name=name,alias=alias,payhead_type=payhead_type,under_name=under_name,net_salary=net_salary,pay_slip_name=pay_slip_name1,currency_ledger=currency_ledger,calculation_type=calculation_type
                         ,attendance_type=attendance_type,production_type=production_type)
         crt.save()
-    return render(request,'pay_head.html',{'att':att})
+    return render(request,'pay_head.html',{'att':att,'pay':pay})
 
 def load(request):
     did=request.GET.get("id")
@@ -322,6 +323,7 @@ def payroll(request):
 
 def attendance(request):
     att=attendance_crt.objects.all()
+    unit=UnitCrt.objects.all()
     if request.method=='POST':
         name=request.POST['name']
         alias=request.POST['alias']
@@ -331,11 +333,12 @@ def attendance(request):
         units=request.POST['units']
         crt=attendance_crt(name=name,alias=alias,under_name=under_name,attendance=attendance,period=period,units=units)
         crt.save()
-    return render(request,'attendance.html',{'att':att})
+    return render(request,'attendance.html',{'att':att,'unit':unit})
 
 
 def attendance_seconday(request):
     att=attendance_crt.objects.all()
+    unit=UnitCrt.objects.all()
     if request.method=='POST':
         name=request.POST['name']
         alias=request.POST['alias']
@@ -345,7 +348,7 @@ def attendance_seconday(request):
         units=request.POST['units']
         crt=attendance_crt(name=name,alias=alias,under_name=under_name,attendance=attendance,period=period,units=units)
         crt.save()
-    return render(request,'attendance(secondary).html',{'att':att})
+    return render(request,'attendance(secondary).html',{'att':att,'unit':unit})
 
 def salary_details(request):
     pay=payhead_crt.objects.all()

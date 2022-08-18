@@ -2,11 +2,26 @@
     {% block body %}
     {% load static %}
     <style>
-      
+      @media (max-width: 991px) {
+        .main-panel {
+            margin-left: 0;
+            width: 100%;
+        }
+        }
+
+        .content-wrapper {
+        padding: 1.875rem 1.75rem;
+        width: 100%;
+        -webkit-flex-grow: 1;
+        flex-grow: 1;
+        }
     
     </style>
-    <div style="margin-left:20% ;margin-top: 10%;">
-    <div class="m-0" style="width: 70%;">
+    <div class="main-panel">
+        <div class="content-wrapper">
+    <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
         <h6  class="bg-info text-light p-2 m-0 text-left">PAN/CIN Details</h6>
 
             <form id="" action="pan_cin" method="post" class="p-5" style="background-color:rgba(0,0,0,.4);">
@@ -14,17 +29,17 @@
 
 
             <div class="row container-fluid  p-2 m-0">
-                <div class="col-sm-4 m-0 p-0"> <label for="name">PAN/Income tax no: :</label></div>
-                <div class="col-sm-8 m-0 p-0"><input   type="text" class="custom-select-md form-control" id="a" 
-                 name="pan" autocomplete="off" style="width: 50%;margin-left: 20%;" ></div>
+                <div class="col-md-4"> <label for="name">PAN/Income tax no: :</label></div>
+                <div class="col-md-8"><input   type="text" class="custom-select-md form-control" id="a" 
+                 name="pan" autocomplete="off" ></div>
                 
             </div>
 
             
             <div class="row container-fluid  p-2 m-0">
-                <div class="col-sm-4 m-0 p-0"> <label for="alia">Corporate Identity No(CIN) :</label></div>
-                <div class="col-sm-8 m-0 p-0"><input class="custom-select-md form-control" type="text" name="cin"
-                    style="width: 50%;margin-left: 20%;" id="alias" autocomplete="off"></div> 
+                <div class="col-md-4"> <label for="alia">Corporate Identity No(CIN) :</label></div>
+                <div class="col-md-8"><input class="custom-select-md form-control" type="text" name="cin"
+                 id="alias" autocomplete="off"></div> 
             </div>
 
 
@@ -32,17 +47,22 @@
 
   
 
-            <div class="enter w-100 py-4" ><button class="btn btn-info w-15">CREATE</button></div>   
+            <div class="row" style="margin-top: 10%;">
+                <div class="col-md-4"></div>
+                    <div class="col-md-4" ><button class="btn btn-info w-15">CREATE</button></div>   
+                </div>  
 
+            </form>
             
         </div>
+        <div class="col-md-4"></div>
                 
     </div>
                 
-           
-        </form>
-
-    </div>  
+     
+        </div>
+    </div>
+    
     
     
     

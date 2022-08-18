@@ -39,20 +39,36 @@
        
       
       }
+      @media (max-width: 991px) {
+        .main-panel {
+            margin-left: 0;
+            width: 100%;
+        }
+        }
+
+        .content-wrapper {
+        padding: 1.875rem 1.75rem;
+        width: 100%;
+        -webkit-flex-grow: 1;
+        flex-grow: 1;
+        }
       
     
     </style>
-    <div style="margin-left:20% ;margin-top: 10%;">
-    <div class="m-0" style="width: 70%;">
-        <h6  class="bg-info text-light p-2 m-0 text-left">Unit Creation(Seconary)</h6>
+    <div class="main-panel">
+        <div class="content-wrapper">
+    <div class="row">
+    <div class="col-md-4" ></div>
+    <div class="col-md-4" >
+        <h6  class="bg-info text-light p-2 m-0 text-left">unit Creation(Secondary)</h6>
 
-            <form id="" action="unit_creation_secondary" method="post" class="p-5" style="background-color:rgba(0,0,0,.4);">
+            <form id="" action="unit_creation" method="post" class="p-5" style="background-color:rgba(0,0,0,.4);">
                 {% csrf_token %}
 
 
             <div class="row container-fluid  p-2 m-0">
-                <div class="col-sm-4 m-0 p-0"> <label for="type">Type :</label></div>
-                <div class="col-sm-4 m-0 p-0"><select name="type" onchange="show()" id="type" required="" class="form-control">
+                <div class="col-md-4"> <label for="type">Type :</label></div>
+                <div class="col-md-8"><select name="type" onchange="show()" id="type" required="" class="form-control">
                     <option value="null">select</option>
                     <option value="simple">simple</option> 
                     <option value="compound">compound</option>
@@ -62,70 +78,75 @@
 
             
             <div id="sym" class="row container-fluid hide  p-2 m-0">
-                <div class="col-sm-4 m-0 p-0"> <label for="b">Symbol</label></div>
-                <div class="col-sm-4 m-0 p-0"> 
-                <input type="text" name="symbol" class="form-control"  placeholder=""></div>
+                <div class="col-md-4"> <label for="b">Symbol</label></div>
+                <div class="col-md-8"> 
+                <input type="text" name="symbol" class="form-control"  placeholder="" autocomplete="off"></div>
                 
             </div>
 
 
             <div id="for" class="row container-fluid hide   p-2 m-0">
-                <div class="col-sm-4 m-0 p-0"> <label for="c">Formal Name</label></div>
-                <div class="col-sm-4 m-0 p-0"> 
-                <input type="text" name="formal_name" class="form-control"  placeholder=""></div>
+                <div class="col-md-4"> <label for="c">Formal Name</label></div>
+                <div class="col-md-8"> 
+                <input type="text" name="formal_name" class="form-control"  placeholder="" autocomplete="off"></div>
                 
             </div>
 
            
 
             <div id="num" class="row container-fluid  hide  p-2 m-0">
-                <div class="col-sm-4 m-0 p-0"> <label for="dcml">Number of decimal places</label></div>
-                <div class="col-sm-4 m-0 p-0"> 
-                <input type="text" name="decimal" class="form-control" id="dcml" placeholder="" value="0"></div>
+                <div class="col-md-4"> <label for="dcml">Number of decimal places</label></div>
+                <div class="col-md-8"> 
+                <input type="text" name="decimal" class="form-control" id="dcml" placeholder="" value="0" autocomplete="off"></div>
                 
             </div>
 
 
             <div id="ft" class="row container-fluid hide   p-2 m-0">
-                <div class="col-sm-4 m-0 p-0"> <label for="dcml">First unit</label></div>
-                <div class="col-sm-4 m-0 p-0"> 
-                <input type="text" name="first_unit" class="form-control"  placeholder="" ></div>
+                <div class="col-md-4"> <label for="dcml">First unit</label></div>
+                <div class="col-md-8"> 
+                <input type="text" name="first_unit" class="form-control"  placeholder="" autocomplete="off" ></div>
                 
             </div>
 
             <div id="con" class="row container-fluid hide   p-2 m-0">
-                <div class="col-sm-4 m-0 p-0"> <label for="dcml">conversion</label></div>
-                <div class="col-sm-4 m-0 p-0"> 
-                <input type="text" name="conversion" class="form-control"  placeholder="" ></div>
+                <div class="col-md-4"> <label for="dcml">conversion</label></div>
+                <div class="col-md-8"> 
+                <input type="text" name="conversion" class="form-control"  placeholder="" autocomplete="off" ></div>
                 
             </div>
 
 
             <div id="sd" class="row container-fluid hide   p-2 m-0">
-                <div class="col-sm-4 m-0 p-0"> <label for="dcml">Second unit</label></div>
-                <div class="col-sm-4 m-0 p-0"> 
-                <input type="text" name="second_unit" class="form-control"  placeholder="" ></div>
+                <div class="col-md-4"> <label for="dcml">Second unit</label></div>
+                <div class="col-md-8"> 
+                <input type="text" name="second_unit" class="form-control"  placeholder="" autocomplete="off"></div>
                 
             </div>
             <div id="uqc" class="row container-fluid hide  p-2 m-0">
-                <div class="col-sm-4 m-0 p-0" > <label for="c">UQC</label></div>
-                <div class="col-sm-4 m-0 p-0"> 
-                <input id="primary-text" type="text" name="uqc" class="form-control"  placeholder="" onfocus="showList()"></div>
+                <div class="col-md-4" > <label for="c">UQC</label></div>
+                <div class="col-md-8"> 
+                <input id="primary-text" type="text" name="uqc" class="form-control"  placeholder="" onfocus="showList()" autocomplete="off"></div>
                 
             </div>
 
-            <div class="flexy w-100 py-4"><button class="btn btn-info w-25 " onclick="checker()">Create</button></div> 
-
-        </div>
+            <div class="row" style="margin-top: 10%;">
+                <div class="col-md-4"></div>
+                    <div class="col-md-4" ><button class="btn btn-info w-15">CREATE</button></div>   
+                </div> 
+        
 
        
         
         </form>
-      
-
- 
     </div>
 
+    <div class="col-md-4"></div>
+
+    </div>
+        </div>
+    </div>
+    
 
 
 

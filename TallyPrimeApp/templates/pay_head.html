@@ -17,6 +17,33 @@
         height: 200px;
       
       }
+
+      .form-popup2 {
+        visibility: hidden;       
+        position: fixed;
+        top: 230px;
+        right: 15px;
+        background-color: rgb(216, 232, 238); 
+        border: 1px solid #f1f1f1;
+        z-index: 9;
+        width: 300px;
+        height: 200px;
+      
+      }
+
+      .form-popup3 {
+        visibility: hidden;       
+        position: fixed;
+        top: 230px;
+        right: 15px;
+        background-color: rgb(216, 232, 238); 
+        border: 1px solid #f1f1f1;
+        z-index: 9;
+        width: 300px;
+        height: 200px;
+      
+      }
+
       .flexy{
             display: flex;
             align-items: center;
@@ -26,29 +53,52 @@
         .hide{
         display: none;
     }
+
+        @media (max-width: 991px) {
+        .main-panel {
+            margin-left: 0;
+            width: 100%;
+        }
+        }
+
+        .content-wrapper {
+        padding: 1.875rem 1.75rem;
+        width: 100%;
+        -webkit-flex-grow: 1;
+        flex-grow: 1;
+        }
     
 </style>
 
+    <div class="main-panel">
+    <div class="content-wrapper">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
 
-    <div style="width: 90%;margin-top: 10%;margin-left: 10%;">
-        <div class="row container-fluid p-0 " >
-            <div class="col-sm-3 m-0 p-0"></div>
-            <div class="col-sm-6 m-0 p-0" style=" background-color:rgba(0,0,0,0.2);">
                
-            <h6  class="bg-info text-light p-2">Pay Head Creation</h6>
+            <h6  class="bg-info text-light p-2 m-0 text-left">Pay Head Creation</h6>
 
-            <form name="myForm" id="" onsubmit="validateForm()" action="pay_head" method="post" class="p-5">
+            <form name="myForm" id="" action="pay_head" onsubmit="validateForm()" method="post" class="p-5" style="background-color:rgba(0,0,0,.4);">
                 {% csrf_token %}
+
+                
             
-                <div class="col-md-12">
-                    <label for="" style="margin-top: 20px;">Name</label>
-                    <input class="custom-select-md form-control " id="name1" name="name" style="width: 40%;"  type="text"
-                    onkeyup="copy()">
-                </div>
-                <div class="col-md-12">
-                    <label for="" style="margin-top:20px ;">(alias)</label>
-                    <input class="custom-select-md form-control  " name="alias"  style="width: 40%;" type="text"><br><br>
-                </div>
+
+
+            <div class="row container-fluid  p-2 m-0">
+                <div class="col-md-4"> <label for="name">Name :</label></div>
+                <div class="col-md-8"><input   type="text" class=" form-control" id="name1" 
+                 name="name" autocomplete="off" onkeyup="copy()" ></div>
+                
+            </div>
+
+            
+            <div class="row container-fluid  p-2 m-0">
+                <div class="col-md-4 "> <label for="alia">(Alias) :</label></div>
+                <div class="col-md-8 "><input class="form-control" type="text" name="alias"
+                     id="alias" autocomplete="off"></div> 
+            </div>
 
                 <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
                         
@@ -56,9 +106,9 @@
 
                         
                                 <div class="row container-fluid  p-2 ">
-                                    <div class="col-sm-6 m-0 p-0"> <label for="gender" style="margin-left: 30px;">Pay heads type</div>
-                                    <div class="col-sm-6 m-0 p-0" >
-                                        <select name="payhead_type" id="" class="form-control" style="width: 50%;margin-left: 10%;">
+                                    <div class="col-md-4"> <label for="ph_typeder" >Pay heads type</div>
+                                    <div class="col-md-8" >
+                                        <select name="payhead_type" id="" class="form-control" autocomplete="off">
                                             <option value="Not Applicable">Not Applicable</option>
                                     <option value="Deductions From Employees">Deductions From Employees</option>
                                     <option value="Earnings for Employees">Earnings for Employees</option>
@@ -70,9 +120,9 @@
 
 
                                 <div class="row container-fluid  p-2">
-                                    <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Income type</label></div>
-                                    <div class="col-sm-6 m-0 p-0"><select name="income_type" id="type" class="form-control"  onchange="show()" 
-                                        style="width: 50%;margin-left: 10%;">
+                                    <div class="col-md-4" > <label for="loc">Income type</label></div>
+                                    <div class="col-md-8"><select name="income_type" id="type" class="form-control"  onchange="show()" 
+                                     autocomplete="off">
                                     <option value="fixed">Fixed</option>
                                     <option value="variable">Variable</option>
                                     </select>
@@ -81,15 +131,15 @@
                                 </div>
 
                                 <div class="row container-fluid  p-2">
-                                    <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Under</label></div>
-                                    <div class="col-sm-6 m-0 p-0"><input type="text" name="under_name" class="form-control" id="loc" placeholder="" 
-                                        style="width: 50%;margin-left: 10%;"></div>
+                                    <div class="col-md-4" > <label for="loc">Under</label></div>
+                                    <div class="col-md-8"><input type="text" name="under_name" class="form-control" id="under"  autocomplete="off"
+                                        onfocus="showListUnder()" value="Primary"></div>
                                 </div>
                                 
                                 <div class="row container-fluid  p-2">
-                                    <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Affect net salary</label></div>
-                                    <div class="col-sm-6 m-0 p-0"><select name="net_salary" id="" class="form-control"
-                                        style="width: 50%;margin-left: 10%;">
+                                    <div class="col-md-4" > <label for="loc">Affect net salary</label></div>
+                                    <div class="col-md-8"><select name="net_salary" id="" class="form-control"
+                                        autocomplete="off">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
                                     </select>
@@ -97,19 +147,19 @@
                                     </div>
                                 </div>
                                 <div class="row container-fluid  p-2">
-                                    <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Name to be displayed in payslip</label></div>
-                                    <div class="col-sm-6 m-0 p-0"><input type="text" name="pay_slip_name" class="form-control" id="name2" placeholder=""
-                                        style="width: 50%;margin-left: 10%;"></div>
+                                    <div class="col-md-4" > <label for="loc" >Name to be displayed in payslip</label></div>
+                                    <div class="col-md-8"><input type="text" name="pay_slip_name" class="form-control" id="name2" placeholder=""
+                                       autocomplete="off"></div>
                                 </div>
                                 <div class="row container-fluid  p-2">
-                                    <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Currency of ledger</label></div>
-                                    <div class="col-sm-6 m-0 p-0"><input type="text" name="currency_ledger" class="form-control" id="" placeholder=""
-                                        style="width: 50%;margin-left: 10%;"></div>
+                                    <div class="col-md-4" > <label for="loc">Currency of ledger</label></div>
+                                    <div class="col-md-8"><input type="text" name="currency_ledger" class="form-control" id="" placeholder=""
+                                        autocomplete="off"></div>
                                 </div>
                                 <div class="row container-fluid  p-2">
-                                    <div class="col-sm-6 m-0 p-0" > <label for="loc" style="margin-left: 30px;">Calculation type</label></div>
-                                    <div class="col-sm-6 m-0 p-0"><select name="calculation_type" id="ctype" class="form-control"  onchange="showCalc()"
-                                        style="width: 50%;margin-left: 10%;">
+                                    <div class="col-md-4" > <label for="loc">Calculation type</label></div>
+                                    <div class="col-md-8"><select name="calculation_type" id="ctype" class="form-control"  onchange="showCalc()"
+                                        autocomplete="off">
                                     <option value="not_applicable">Not Applicable</option>
                                     <option value="on_attendance">On Attendance</option>
                                     <option value="on_production">On Production</option>
@@ -119,27 +169,29 @@
                                 </div>
 
                                 <div id="attl" class="row container-fluid hide  p-2 m-0">
-                                    <div class="col-sm-6 m-0 p-0" > <label for="attendanc" style="margin-left: 30px;">Attendance/Leave with Pay</label></div>
-                                    <div class="col-sm-6 m-0 p-0"><input type="text" name="attendance_type" class="form-control" id="alp" placeholder="" onfocus="showList()"
-                                        style="width: 50%;margin-left: 10%;"></div>
+                                    <div class="col-md-4" > <label for="attendanc">Attendance/Leave with Pay</label></div>
+                                    <div class="col-md-8"><input type="text" name="attendance_type" class="form-control" id="alp" placeholder="" autocomplete="off" 
+                                        onfocus="showList()"></div>
                                 </div>
 
                                 <div id="prd" class="row container-fluid hide  p-2 m-0">
-                                    <div class="col-sm-6 m-0 p-0" > <label for="prdtyp" style="margin-left: 30px;">Production Type</label></div>
-                                    <div class="col-sm-6 m-0 p-0"><input type="text" name="production_type" class="form-control" id="prdt" placeholder="" onfocus="showListProduction()"
-                                        style="width: 50%;margin-left: 10%;"></div>
+                                    <div class="col-md-4" > <label for="prdtyp" >Production Type</label></div>
+                                    <div class="col-md-8"><input type="text" name="production_type" class="form-control" id="prdt" placeholder="" autocomplete="off"
+                                        onfocus="showListProduction()"></div>
                                 </div>
 
 
 
-                                <div class="flexy w-100 py-4"><button class="btn btn-info" style="margin-left: 47%; width: 40%;">Create</button></div>
                                 
-
-
-                        
+            <div class="row" style="margin-top: 10%;">
+                <div class="col-md-4"></div>
+                    <div class="col-md-4" ><button class="btn btn-info w-15">CREATE</button></div>   
                 </div>
 
-            </form>
+                            </form>
+                        
+                </div>
+                <div class="col-md-4"></div>
             
             </div>
             
@@ -147,6 +199,9 @@
                 </div>
 
         </div>
+
+    
+    
 
         <!-- list Creation -->
 
@@ -185,6 +240,59 @@
   </div>
 
 
+
+  <!-- list Creation production type -->
+
+  <div class="form-popup2" id="list-div2" >
+  
+    <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of Production Types</h6>
+  <hr >
+  <div>
+    <table >
+        
+          
+    <tr>
+      <td>    
+  
+        {% for l in pay %}
+      <div onclick="hideListProduction('{{l.production_type}}')" style="color:black;" >{{l.production_type}}</div>
+      {% endfor %}
+      </td>
+    </tr>  
+    
+    </table>
+  </div>
+  
+  </div>
+
+
+<!-- list Creation Under -->
+
+<div class="form-popup3" id="list-div3" >
+  
+    <h6 style="background-color:rgb(17, 169, 240) ;color:white">List of Payhead Types</h6>
+  <hr >
+  <div>
+    <table >
+        
+          
+    <tr>
+      <td>    
+  
+        {% for l in pay %}
+      <div onclick="hideListUnder('{{l.under_name}}')" style="color:black;" >{{l.under_name}}</div>
+      {% endfor %}
+      </td>
+    </tr>  
+    
+    </table>
+  </div>
+  
+  </div>
+
+
+
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
 
  <script>
@@ -213,6 +321,23 @@
         document.getElementById("alp").value=valueDIv;
         document.getElementById("list-div").style.visibility = "hidden";
     }
+
+    function showListProduction(){
+        document.getElementById("list-div2").style.visibility="visible";
+    }
+    function hideListProduction(valueDIv) {
+        document.getElementById("prdt").value=valueDIv;
+        document.getElementById("list-div2").style.visibility = "hidden";
+    }
+
+    function showListUnder(){
+        document.getElementById("list-div3").style.visibility="visible";
+    }
+    function hideListUnder(valueDIv){
+        document.getElementById("under").value=valueDIv;
+        document.getElementById("list-div3").style.visibility = "hidden";
+    }
+    
 
     function showCalc(){
         var status =document.getElementById('ctype');
